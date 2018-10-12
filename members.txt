@@ -2,3 +2,4 @@ List of Members:
 Felicia Chen - Helped write Milestone 1 project proposal 
 Yichuan Shi - Seted up the GitHub repo and the initial Django code base
 Shun Li - Helped write Milestone 1 project proposal
+Ziyi Wang - Helped write Milestone 1 project proposal
