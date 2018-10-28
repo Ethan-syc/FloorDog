@@ -13,4 +13,3 @@ def get_product_url(category_url: str) -> list:
         if re.search(r"product", href):
             res_url.append(href)
     return res_url
-
