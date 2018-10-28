@@ -2,7 +2,7 @@ import requests
 from bs4 import BeautifulSoup
 import re
 
-def get_img_url(product_url)
+def get_img_url(product_url):
 	s = requests.session()
 	p = requests.get(product_url)
 	soup = BeautifulSoup(p.content, 'html.parser')
