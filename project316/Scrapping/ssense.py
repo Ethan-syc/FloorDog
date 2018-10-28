@@ -13,46 +13,81 @@ women_category = ('dresses', 'jackets-coats', 'jeans', 'jumpsuits',
 
 root = 'https://www.ssense.com'
 
+catagory_max = 1000
+
 def scrap(args):
 	csv_path = args.csv_dir + '/' + "clothes.csv"
 	with open(csv_path, 'w', newline='') as csvfile:
 		writer = csv.writer(csvfile, delimiter=',')
 
 		index = 0
+		catagory_index = 0
+		
 		for cat in men_category:
+
+			catagory_index += 1
+			product_index = 0
+			print("men catagory: {}/{}".format(catagory_index, len(men_category)))
+
 			cat_url = root + '/en-us/' + 'men/' + cat
 			product_urls = scrapping_tools.get_product_url(cat_url)
+
 			for product_url in product_urls:
-				product_url = root + product_url
+				product_index += 1
 				index += 1
+
+				if(product_index > 1000):
+					break
+				if(product_index%10 == 0):
+					print("men/{}: {}/1000".format(cat, product_index))
+
+				product_url = root + product_url
+
 				temp = []
+
 				img_url = scrapping_tools.get_img_url(product_url)
 				product_description = scrapping_tools.get_product_description(product_url)
+
 				temp.append(index)
 				temp.append(product_description[0])
 				temp.append('men')
 				temp.append(cat)
 				temp.append(img_url)
 				temp.append(product_description[1])
-				print(product_url)
 				writer.writerow(temp)
 
+		catagory_index = 0
+
 		for cat in women_category:
+
+			catagory_index += 1
+			product_index = 0
+			print("women catagory: {}/{}".format(catagory_index, len(women_category)))
+
 			cat_url = root + '/en-us/' + 'women/' + cat
 			product_urls = scrapping_tools.get_product_url(cat_url)
+
 			for product_url in product_urls:
-				product_url = root + product_url
+				product_index += 1
 				index += 1
+
+				if(product_index > 1000):
+					break
+				if(product_index%10 == 0):
+					print("men/{}: {}/1000".format(cat, product_index))
+
+				product_url = root + product_url
 				temp = []
+
 				img_url = scrapping_tools.get_img_url(product_url)
 				product_description = scrapping_tools.get_product_description(product_url)
+
 				temp.append(index)
 				temp.append(product_description[0])
 				temp.append('women')
 				temp.append(cat)
 				temp.append(img_url)
 				temp.append(product_description[1])
-				print(product_url)
 				writer.writerow(temp)
 
 
