@@ -117,4 +117,6 @@ pyvenv.cfg
 pip-selfcheck.json
 
 templates/
-.idea/
+.idea
+.
+.DS_Store
