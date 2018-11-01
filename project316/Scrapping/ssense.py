@@ -21,6 +21,7 @@ def scrap(args):
 		writer = csv.writer(csvfile, delimiter=',')
 
 		index = 0
+		count = 0
 		catagory_index = 0
 		
 		for cat in men_category:
@@ -57,11 +58,13 @@ def scrap(args):
 					except:
 						print("cannot find image url: index-{}, product_url: {}".format(index, product_url))
 						img_url = 'null'
+						count-=1
 					try:
 						product_description = scrapping_tools.get_product_description(product_url)
 					except:
 						print("cannot find description: index-{}, product_url: {}".format(index, product_url))
 						product_description=['null','null']
+						count-=1
 
 					temp.append(index)
 					temp.append(product_url)
@@ -113,11 +116,13 @@ def scrap(args):
 					except:
 						print("cannot find image url: index-{}, product_url: {}".format(index, product_url))
 						img_url = 'null'
+						count-=1
 					try:
 						product_description = scrapping_tools.get_product_description(product_url)
 					except:
 						print("cannot find description: index-{}, product_url: {}".format(index, product_url))
 						product_description=['null','null']
+						count-=1
 
 					temp.append(index)
 					temp.append(product_description[0])
@@ -129,6 +134,8 @@ def scrap(args):
 
 				if(product_index > 1000):
 						break
+
+		print("total number of clothes: {}\ntotal number of clothes with description: {}".format(index, count))
 
 
 def arg():
