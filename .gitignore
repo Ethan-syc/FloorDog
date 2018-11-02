@@ -120,16 +120,10 @@ templates/
 .idea
 .
 .DS_Store
-<<<<<<< HEAD
-project316/clothes.csv
 project316/clothes.csv
 project316/men_clothes.csv
-project316/clothes.csv
 project316/women_clothes.csv
 project316/men_clothes_comb.csv
-project316/clothes.csv
-=======
-*.DS_Store
->>>>>>> 04c430823964e3bd0c8c883adaf75e44a39ce1e1
 project316/women_clothes_comb.csv
+**.DS_Store
 *.csv
