@@ -5,18 +5,21 @@ import re
 class scrapping_tools:
 
 	def get_product_description(product_url):
-		s = requests.session()
-		p = requests.get(product_url)
-		soup = BeautifulSoup(p.content, "html.parser")
-		html_str = str(soup.prettify())
-		title_str = re.findall(r"content=.*twitter\:title", html_str)[0]
-		des_str = re.findall(r"content=.*twitter\:description", html_str)[0]
-		title = re.sub(r"content=\"", "", title_str)
-		title = re.sub(r"\".*", "", title)
-		title = re.sub(r".* - ", "", title)
-		des = re.sub(r"content=\"", "", des_str)
-		des = re.sub(r"\".*", "", des)
-		return title, des
+	    s = requests.session()
+	    p = requests.get(product_url)
+	    soup = BeautifulSoup(p.content, "html.parser")
+	    html_str = str(soup.prettify())
+	    title_str = re.findall(r"content=.*twitter\:title", html_str)[0]
+	    des_str = re.findall(r"content=.*twitter\:description", html_str)[0]
+	    mat_str = re.findall(r"composition\"\:\".*?\"", html_str)[0]
+	    title = re.sub(r"content=\"", "", title_str)
+	    title = re.sub(r"\".*", "", title)
+	    title = re.sub(r".* - ", "", title)
+	    des = re.sub(r"content=\"", "", des_str)
+	    des = re.sub(r"\".*", "", des)
+	    mat = re.sub(r"composition\"\:\"", "", mat_str)
+	    mat = re.sub(r"\"", "", mat)
+	    return title, des, mat
 
 	def get_img_url(product_url):
 		s = requests.session()
@@ -42,3 +45,12 @@ class scrapping_tools:
 			if re.search(r"product", href):
 				res_url.append(href)
 		return res_url
+
+	def get_comb_url(product_url):
+	    s = requests.session()
+	    p = requests.get(product_url)
+	    soup = BeautifulSoup(p.content, "html.parser")
+	    other = soup.find_all("div", class_ = 'tab-pane span16 tab-content vspace2')
+	    comb = other[2].find_all("a")
+	    comb_url = re.findall(r"href=\".*?\"", str(comb))
+	    return comb_url
