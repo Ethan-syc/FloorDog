@@ -106,10 +106,9 @@ def scrap_by_gender(args, gender):
 					writer.writerow(temp)
 					print('write')
 
-				if(product_index > 1000):
+					if(product_index > 1000):
 						break
-
-			if(product_index > 1000):
+				if(product_index > 1000):
 						break
 
 if __name__ == '__main__':
