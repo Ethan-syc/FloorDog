@@ -11,8 +11,11 @@ men_category = ('jackets-coats', 'jeans', 'pants',
 women_category = ('dresses', 'jackets-coats', 'jeans', 'jumpsuits',
 				'pants', 'shorts', 'skirts', 'sweaters', 'tops')
 
-category = {'men': men_category, 'women': women_category}
+men_cat_dict = {'jackets-coats': set([]), 'jeans': set([]), 'pants': set([]), 'shirts': set([]), 'shorts': set([]), 'suits-blazers': set([]), 'sweaters': set([])}
+women_cat_dict = {'dresses': set([]), 'jackets-coats': set([]), 'jeans': set([]), 'jumpsuits': set([]), 'pants': set([]), 'shorts': set([]), 'skirts': set([]), 'sweaters': set([]), 'tops': set([])}
 
+category = {'men': men_category, 'women': women_category}
+category_dict = {'men': men_cat_dict, 'women': women_cat_dict}
 root = 'https://www.ssense.com'
 
 category_max = 1000
@@ -89,6 +92,11 @@ def scrap_by_gender(args, gender):
 					except:
 						print("cannot find combinition url: index-{}, product_url: {}".format(index, product_url))
 						comb_url = []
+
+					try:
+						specific_cat = get_specific_category(product_url)
+						category_dict[gender][cat].add(specific_cat)
+
 					print('get comb url')
 
 					temp.append(index)
@@ -111,9 +119,31 @@ def scrap_by_gender(args, gender):
 				if(product_index > 1000):
 						break
 
+
+def get_specific_category(product_url):
+	cat = re.findall(r"-.*?/[0-9]", product_url)[0]
+	cat = re.sub(r"-.*-", '', cat)
+	cat = re.sub(r"/[0-9]", '', cat)
+	return cat
+
+
+def save_cat_dict(args):
+	dict_path = os.path.join(args.csv_dir, 'cat_dict.csv')
+	with open(dict_path, 'w', newline = '') as csvfile:
+		writer = csv.writer(csvfile, delimiter=',')
+		for gender in ('men', 'women'):
+			for cat in category_dict[gender].keys():
+				for specific_cat in category_dict[gender][cat]:
+					temp = []
+					temp.append(gender)
+					temp.append(cat)
+					temp.append(specific_cat)
+					writer.writerow(temp)
+
 if __name__ == '__main__':
 	args = arg()
 	clothes = scrap(args)
+	save_cat_dict(args)
 
 
 
