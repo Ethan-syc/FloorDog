@@ -1,6 +1,9 @@
-List of Members:
-Felicia Chen - Helped write Milestone 1 project proposal 
-Yichuan Shi - Seted up the GitHub repo and the initial Django code base
-Shun Li - Helped write Milestone 1 project proposal
-Ziyi Wang - Helped write Milestone 1 project proposal
-Alice Chen - Helped write Milestone 1 project proposal
+Felicia - Wrote code that scrapes Google search results. Given a search-term, it returns a dataframe with the title and description of the desired number of results. Began reading on the RNN portion. 
+
+Ziyi - Wrote the scrapping program on ssense.com with Ethan, Alice and Shun. Added the scrapping for compatible clothes. Wrote color identification program to identify dominant colors of each clothes. Wrote the Neural Net for landmark prediction by Pytorch and trained it on DeepFashion Dataset.
+
+Shun - Assisted in the development of the scrapping program on ssense.com with Ziyi, Ethan, and Alice. Built the environment for django, learned basic concepts and operations in Django, and finished a raw django prototype for the project.
+
+Yichuan - Wrote a part of the web scraping tool on ssense.com using python beautifulsoup module and regular expression, helped teammate set up the Django develop environment. Worked through the Django tutorial. 
+
+Alice -  Helped with writing the scrapping program on ssense.com and parsing the data by assigning attributes. Went through tutorial on CNNs related to visual recognition. 
