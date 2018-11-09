@@ -96,6 +96,8 @@ def scrap_by_gender(args, gender):
 					try:
 						specific_cat = get_specific_category(product_url)
 						category_dict[gender][cat].add(specific_cat)
+					except:
+						print('pass')
 
 					print('get comb url')
 
