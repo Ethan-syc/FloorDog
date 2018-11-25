@@ -1,16 +1,15 @@
 import cv2
 import numpy as np
 from matplotlib import pyplot as plt
-import os, time, webcolors
+import os, time, webcolors, csv
 from sklearn.cluster import KMeans
 import xml.etree.ElementTree as ET
+import requests
 
 kmeans = KMeans(10)
 
-img_dir = '/Users/evnw/Programming/Colors/Smart-Colors/Color_Identification/Test_img'
-img_path = os.path.join(img_dir, 'test.jpg')
-
-res_dir = '/Users/evnw/Programming/Colors/Smart-Colors/Color_Identification/Test_img'
+csv_dir = "/Users/evnw/Documents/GitHub/FloorDog/project316"
+img_path = os.path.join(csv_dir, 'temp2.jpg')
 
 class Color:
 	
@@ -39,7 +38,7 @@ def color_recognition(im):
 	# KMeans
 	im_arr = im_s.reshape((im_s.shape[0] * im_s.shape[1], 3))
 	kmeans.fit(im_arr)
-	colors = kmeans.cluster_centers_.astype(np.uint8)                                 #BGR
+	colors = kmeans.cluster_centers_.astype(np.uint8)								 #BGR
 	labels = kmeans.labels_
 
 	# Create color class
@@ -48,13 +47,24 @@ def color_recognition(im):
 		color_temp = Color(len(np.where(labels==i)[0]), colors[i])
 		color_array.append(color_temp)
 
+	thresh = 50
 	# find number of significant colors
-	color_res, color_num = color_filter(color_array)
+	color_res, color_num = color_filter(color_array, thresh)
+	while color_num < 2:
+		print('refind')
+		thresh -= 5
+		color_res, color_num = color_filter(color_array, thresh)
+		if thresh < 35:
+			break
 
 	kmeans_res = KMeans(color_num)
 	kmeans_res.fit(im_arr)
 	colors_final = kmeans_res.cluster_centers_.astype(np.uint8)
 
+	if color_num == 1:
+		return colors_final
+
+	#plt.imshow(im);plt.show()
 	#plt.imshow([colors_final]);plt.show()
 
 	min_dist = 999999
@@ -67,16 +77,19 @@ def color_recognition(im):
 			min_dist = dist
 			closest_BGR_index = i
 
-	colors_final = np.delete(colors_final, closest_BGR_index, 0)
+	colors_final_noback = np.delete(colors_final, closest_BGR_index, 0)
+
+	if len(colors_final_noback) == 0:
+		return colors_final
 
 
 	#plt.imshow([colors_final]);plt.show()
 
 	#print(colors_final)
 
-	return colors_final
+	return colors_final_noback
 
-def color_filter(color_array):
+def color_filter(color_array, min_dist_thresh):
 
 	distant_color_num = 0
 	res = []
@@ -94,9 +107,9 @@ def color_filter(color_array):
 				min_dist = dist
 				closest_color = color
 
-		if min_dist >= 50:
+		if min_dist >= min_dist_thresh:
 			distant_color_num += 1
-		if current.num == 500 and min_dist < 50:
+		if current.num >= 500 and min_dist < min_dist_thresh:
 			distant_color_num += 1
 
 
@@ -137,11 +150,43 @@ def create_xml(colors, url):
 	xml_path = os.path.join(res_dir, 'test.xml')
 	tree.write(xml_path)
 
+def color_attr(gender):
+	csv_path = os.path.join(csv_dir, gender+'.csv')
+	csv_file = open(csv_path, 'r')
+	csv_color_path = os.path.join(csv_dir, gender+'_color.csv')
+	csv_color_file = open(csv_color_path, 'w')
+	writer = csv.writer(csv_color_file, delimiter = ',')
+	reader = csv.reader(csv_file, delimiter = ',')
+	for row in reader:
+		index = int(row[0])
+		print(index)
+		img_url = row[5]
+		response = requests.get(img_url)
+		image = response.content
+		f = open(img_path,'wb')
+		f.write(image)
+		f.close()
+		im = cv2.imread(img_path)
+		colors = color_recognition(im)
+		while len(colors) == 0:
+			colors = color_recognition(im)
+			print(colors)
+		temp = []
+		temp.append(index)
+		for color in colors:
+			rgb = (color[2], color[1], color[0])
+			hex = webcolors.rgb_to_hex(rgb)
+			temp.append(hex)
+		colors = temp
+		writer.writerow(temp)
+		os.remove(img_path)
+
 
 if __name__ == '__main__':
-	main()
+	#color_attr('men')
+	color_attr('women')
 '''
-	url = img_path                                              # need change
+	url = img_path											  # need change
 	im = cv2.imread(img_path)
 
 	tm = time.time() #---------------------------------------------------------
