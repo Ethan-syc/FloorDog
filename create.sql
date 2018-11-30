@@ -45,7 +45,7 @@
 -- 	accessory13 char(500) default null references Accessory(accessory_url13));
 
 create table men_color
-	(id integer primary key references Men_lothes(mcid),
+	(id integer primary key references men_clothes(mcid),
 	color1 char(7) default null,
 	color2 char(7) default null,
 	color3 char(7) default null,
@@ -58,7 +58,7 @@ create table men_color
 	color10 char(7) default null);
 
 create table women_color
-	(id integer primary key references Women_clothes(wcid),
+	(id integer primary key references women_clothes(wcid),
 	color1 char(7) default null,
 	color2 char(7) default null,
 	color3 char(7) default null,
