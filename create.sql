@@ -121,6 +121,6 @@ create table women_color
 
 
 \copy men_clothes from '/Users/shunli/Desktop/CS316/floordog/men.csv' delimiter ',' CSV;
-\copy men_color from '/Users/shunli/Desktop/CS316/floordog/men_color.csv' delimiter ',' CSV;
 \copy women_clothes from '/Users/shunli/Desktop/CS316/floordog/women.csv' delimiter ',' CSV;
+\copy men_color from '/Users/shunli/Desktop/CS316/floordog/men_color.csv' delimiter ',' CSV;
 \copy women_color from '/Users/shunli/Desktop/CS316/floordog/women_color.csv' delimiter ',' CSV;
