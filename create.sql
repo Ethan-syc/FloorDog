@@ -78,7 +78,7 @@ create table men_clothes
 	category char(50),
 	pic_url char(500),
 	clothes_detail char(500) not null,
-	material char(200),
+	material char(500),
 	accessory1 char(500) default null,
 	accessory2 char(500) default null,
 	accessory3 char(500) default null,
@@ -101,7 +101,7 @@ create table women_clothes
 	category char(50),
 	pic_url char(500),
 	clothes_detail char(500) not null,
-	material char(200),
+	material char(500),
 	accessory1 char(500) default null,
 	accessory2 char(500) default null,
 	accessory3 char(500) default null,
@@ -117,7 +117,8 @@ create table women_clothes
 	accessory13 char(500) default null);
 
 
-\copy men_color from '/Users/shunli/Desktop/CS316/floordog/men_color.csv' delimiter ',' CSV;
+
 \copy men_clothes from '/Users/shunli/Desktop/CS316/floordog/men.csv' delimiter ',' CSV;
-\copy women_color from '/Users/shunli/Desktop/CS316/floordog/women_color.csv' delimiter ',' CSV;
+\copy men_color from '/Users/shunli/Desktop/CS316/floordog/men_color.csv' delimiter ',' CSV;
 \copy women_clothes from '/Users/shunli/Desktop/CS316/floordog/women.csv' delimiter ',' CSV;
+\copy women_color from '/Users/shunli/Desktop/CS316/floordog/women_color.csv' delimiter ',' CSV;
