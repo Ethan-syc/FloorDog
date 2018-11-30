@@ -44,31 +44,6 @@
 -- 	accessory12 varchar(500) default null references Accessory(accessory_url12),
 -- 	accessory13 varchar(500) default null references Accessory(accessory_url13));
 
-create table men_color
-	(id integer primary key references men_clothes(mcid),
-	color1 varchar(7) default null,
-	color2 varchar(7) default null,
-	color3 varchar(7) default null,
-	color4 varchar(7) default null,
-	color5 varchar(7) default null,
-	color6 varchar(7) default null,
-	color7 varchar(7) default null,
-	color8 varchar(7) default null,
-	color9 varchar(7) default null,
-	color10 varchar(7) default null);
-
-create table women_color
-	(id integer primary key references women_clothes(wcid),
-	color1 varchar(7) default null,
-	color2 varchar(7) default null,
-	color3 varchar(7) default null,
-	color4 varchar(7) default null,
-	color5 varchar(7) default null,
-	color6 varchar(7) default null,
-	color7 varchar(7) default null,
-	color8 varchar(7) default null,
-	color9 varchar(7) default null,
-	color10 varchar(7) default null);
 
 create table men_clothes
 	(mcid integer primary key,
@@ -115,6 +90,33 @@ create table women_clothes
 	accessory11 varchar(500) default null,
 	accessory12 varchar(500) default null,
 	accessory13 varchar(500) default null);
+	
+create table men_color
+	(id integer primary key references men_clothes(mcid),
+	color1 varchar(7) default null,
+	color2 varchar(7) default null,
+	color3 varchar(7) default null,
+	color4 varchar(7) default null,
+	color5 varchar(7) default null,
+	color6 varchar(7) default null,
+	color7 varchar(7) default null,
+	color8 varchar(7) default null,
+	color9 varchar(7) default null,
+	color10 varchar(7) default null);
+
+create table women_color
+	(id integer primary key references women_clothes(wcid),
+	color1 varchar(7) default null,
+	color2 varchar(7) default null,
+	color3 varchar(7) default null,
+	color4 varchar(7) default null,
+	color5 varchar(7) default null,
+	color6 varchar(7) default null,
+	color7 varchar(7) default null,
+	color8 varchar(7) default null,
+	color9 varchar(7) default null,
+	color10 varchar(7) default null);
+
 
 
 
