@@ -1,0 +1,43 @@
+<h1>This is the filter result page</h1>
+<h1><a href="{% url 'filter page' %}">To return to filter page, click me!</a></h1>
+<h2>==================我是分割线==================</h2>
+<h2>gender you choose: {{ gender }}</h2>
+<h2>category you choose: {{ category }}</h2>
+<h2>==================我是分割线==================</h2>
+{% if len == 0 %}
+    <h2>Sorry! OwO </h2>
+    <h2>We can't find any result from the combination of your choice, try search something else</h2>
+{% else %}
+    <h2>Great! OwO </h2>
+    <h2>We found {{ len }} result</h2>
+{% endif %}
+<h2>==================我是分割线==================</h2>
+<h2>results are:</h2>
+{% for result in result_list %}
+    <tr>
+        <td>primary key: {{ result.mcid }}<br></td>
+        {#TODO add the field we want to show#}
+    </tr>
+{% endfor %}
+
+{% if result_list.has_other_pages %}
+    <ul class="pagination">
+        {% if result_list.has_previous %}
+            <li><a href="?page={{ result_list.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in result_list.paginator.page_range %}
+            {% if result_list.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+            {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+            {% endif %}
+        {% endfor %}
+        {% if result_list.has_next %}
+            <li><a href="?page={{ result_list.next_page_number }}">&raquo;</a></li>
+        {% else %}
+            <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+{% endif %}

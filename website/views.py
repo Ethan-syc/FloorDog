@@ -1,29 +1,45 @@
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.urls import reverse
 
 from .forms import *
+from .models import *
 
 
 def index(request):
-    return render(request, 'index.html')
+    return render(request, "index.html")
 
-
-# form = MyForm()
-# return render_to_response('some_template.html', {'form': form})
 
 def filter_page(request):
     filter_form = MyForm(request.POST)
-    if request.method == 'POST' and filter_form.is_valid():
-        gender = filter_form.cleaned_data['gender']
-        category = filter_form.cleaned_data['category']
-        print(gender)
-        print(category)
-        # if gender == 'M':
-        #         #     men_result_list =
-        #         # else:
-        #         #     pass
-        return HttpResponseRedirect(reverse('filter page', args=()))
+    if request.method == "POST" and filter_form.is_valid():
+        gender = filter_form.cleaned_data["gender"]
+        category = filter_form.cleaned_data["category"]
+        # print(gender)
+        # print(category)
+        return HttpResponseRedirect(
+            reverse("filter-result page", args=(gender, category))
+        )
     else:
         filter_form = MyForm()
-        return render(request, 'some_template.html', {'form': filter_form})
+        return render(request, "filter_page.html", {"form": filter_form})
+
+
+def filter_result_page(request, gender, category):
+    # print(gender)
+    # print(category)
+    if gender == "M":
+        result_list = MenClothes.objects.filter(category=category)
+    else:
+        result_list = WomenClothes.objects.filter(category=category)
+    paginator = Paginator(result_list, 10)
+    page = request.GET.get('page', 1)
+    try:
+        paginated_result_list = paginator.page(page)
+    except PageNotAnInteger:
+        paginated_result_list = paginator.page(1)
+    except EmptyPage:
+        paginated_result_list = paginator.page(paginator.num_pages)
+    return render(request, "filter_result.html",
+                  {"gender": gender, "category": category, 'len': len(result_list), "result_list": paginated_result_list})
