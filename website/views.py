@@ -26,6 +26,7 @@ def filter_page(request):
         return render(request, "filter_page.html", {"form": filter_form})
 
 
+# pagination: ref:https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
 def filter_result_page(request, gender, category):
     # print(gender)
     # print(category)
@@ -42,4 +43,5 @@ def filter_result_page(request, gender, category):
     except EmptyPage:
         paginated_result_list = paginator.page(paginator.num_pages)
     return render(request, "filter_result.html",
-                  {"gender": gender, "category": category, 'len': len(result_list), "result_list": paginated_result_list})
+                  {"gender": gender, "category": category, 'len': len(result_list),
+                   "result_list": paginated_result_list, "paginator": paginator})

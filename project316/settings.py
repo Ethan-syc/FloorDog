@@ -32,6 +32,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'website.apps.WebsiteConfig',
+    'website.templatetags.proper_pagination',
+    'website.templatetags.url_replace',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
