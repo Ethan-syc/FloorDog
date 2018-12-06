@@ -74,7 +74,7 @@ CATEGORY = (('blazer', 'blazer'),
 
 
 class MyForm(forms.Form):
-    my_choice_field1 = forms.ChoiceField(widget=forms.Select(),
-                                         choices=GENDER)
-    my_choice_field2 = forms.ChoiceField(widget=forms.Select(),
-                                         choices=CATEGORY)
+    gender = forms.ChoiceField(widget=forms.Select(),
+                               choices=GENDER)
+    category = forms.ChoiceField(widget=forms.Select(),
+                                 choices=CATEGORY)
