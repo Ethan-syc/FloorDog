@@ -1,6 +1,6 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 
 from .forms import *
@@ -35,13 +35,29 @@ def filter_result_page(request, gender, category):
     else:
         result_list = WomenClothes.objects.filter(category=category)
     paginator = Paginator(result_list, 10)
-    page = request.GET.get('page', 1)
+    page = request.GET.get("page", 1)
     try:
         paginated_result_list = paginator.page(page)
     except PageNotAnInteger:
         paginated_result_list = paginator.page(1)
     except EmptyPage:
         paginated_result_list = paginator.page(paginator.num_pages)
-    return render(request, "filter_result.html",
-                  {"gender": gender, "category": category, 'len': len(result_list),
-                   "result_list": paginated_result_list, "paginator": paginator})
+    return render(
+        request,
+        "filter_result.html",
+        {
+            "gender": gender,
+            "category": category,
+            "len": len(result_list),
+            "result_list": paginated_result_list,
+            "paginator": paginator,
+        },
+    )
+
+
+def clothes_detail(request, gender, pk):
+    if gender == "M":
+        clothes = get_object_or_404(MenClothes, pk=pk)
+    else:
+        clothes = get_object_or_404(WomenClothes, pk=pk)
+    return render(request, "detail_page.html", {"clothes": clothes})

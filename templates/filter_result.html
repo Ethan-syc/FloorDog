@@ -5,10 +5,10 @@
 <h2>category you choose: {{ category }}</h2>
 <h2>==================我是分割线==================</h2>
 {% if len == 0 %}
-    <h2>Sorry! OwO </h2>
+    <h2>Sorry! </h2>
     <h2>We can't find any result from the combination of your choice, try search something else</h2>
 {% else %}
-    <h2>Great! OwO </h2>
+    <h2>Great! </h2>
     <h2>We found {{ len }} result</h2>
     <h2>every page has max 10 results</h2>
 {% endif %}
@@ -16,7 +16,9 @@
 <h2>results are:</h2>
 {% for result in result_list %}
     <tr>
-        <td>primary key: {{ result.clothes_name }}<br></td>
+        <h3>clothes name: {{ result.clothes_name }}</h3>
+        <img src={{ result.pic_url }}>
+        <h3><a href="{% url 'clothes-detail page' gender result.pk %}">click me to see detail</a></h3>
         {#TODO add the field we want to show#}
     </tr>
 {% endfor %}
