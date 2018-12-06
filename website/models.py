@@ -8,7 +8,7 @@ class MenClothes(models.Model):
     item_url = models.CharField(max_length=500)
     clothes_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=5)
-    category = models.CharField(max_length=50)
+    category = models.CharField(db_index=True, max_length=50)
     pic_url = models.CharField(max_length=500)
     clothes_detail = models.CharField(max_length=500)
     material = models.CharField(max_length=500)
@@ -32,12 +32,12 @@ class WomenClothes(models.Model):
     item_url = models.CharField(max_length=500)
     clothes_name = models.CharField(max_length=100)
     gender = models.CharField(max_length=5)
-    category = models.CharField(max_length=50)
+    category = models.CharField(db_index=True, max_length=50)
     pic_url = models.CharField(max_length=500)
     clothes_detail = models.CharField(max_length=500)
     material = models.CharField(max_length=500)
     accessory1 = models.CharField(max_length=500, default='')
-    accessory2 = models.CharField(max_length=500, default='')
+    accessory2 = models.CharField(ma_length=500, default='')
     accessory3 = models.CharField(max_length=500, default='')
     accessory4 = models.CharField(max_length=500, default='')
     accessory5 = models.CharField(max_length=500, default='')
@@ -70,6 +70,7 @@ class WomenColor(models.Model):
     color6 = models.CharField(max_length=7, default='')
     color7 = models.CharField(max_length=7, default='')
     color8 = models.CharField(max_length=7, default='')
+
 
 def __str__(self):
     return (
