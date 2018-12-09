@@ -8,7 +8,7 @@ from .models import *
 
 
 def index(request):
-    return render(request, "index.html")
+    return render(request, "website/index.html")
 
 
 def filter_page(request):
@@ -23,7 +23,7 @@ def filter_page(request):
         )
     else:
         filter_form = MyForm()
-        return render(request, "filter_page.html", {"form": filter_form})
+        return render(request, "website/filter_page.html", {"form": filter_form})
 
 
 # pagination: ref:https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
@@ -44,7 +44,7 @@ def filter_result_page(request, gender, category):
         paginated_result_list = paginator.page(paginator.num_pages)
     return render(
         request,
-        "filter_result.html",
+        "website/filter_result.html",
         {
             "gender": gender,
             "category": category,
@@ -60,4 +60,19 @@ def clothes_detail(request, gender, pk):
         clothes = get_object_or_404(MenClothes, pk=pk)
     else:
         clothes = get_object_or_404(WomenClothes, pk=pk)
-    return render(request, "detail_page.html", {"clothes": clothes})
+    return render(request, "website/detail_page.html", {"clothes": clothes})
+
+
+def upload_page(request):
+    if request.method == 'POST':
+        form = UploadFileForm(request.POST, request.FILES)
+        if form.is_valid():
+            new_file = UploadFile(file=request.FILES['file'])
+            new_file.save()
+
+            return HttpResponseRedirect(reverse('upload:home'))
+    else:
+        form = UploadFileForm()
+
+    data = {'form': form}
+    return render(request, 'website/upload_page.html', data)

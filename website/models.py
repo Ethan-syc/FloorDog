@@ -2,6 +2,8 @@ from django.db import models
 
 
 # Create your models here.
+class UploadFile(models.Model):
+    file = models.FileField(upload_to='uploaded_files/%Y/%m/%d')
 
 
 class MenClothes(models.Model):
@@ -47,6 +49,10 @@ class WomenClothes(models.Model):
     accessory8 = models.CharField(max_length=500, default="")
     accessory9 = models.CharField(max_length=500, default="")
     accessory10 = models.CharField(max_length=500, default="")
+    accessory11 = models.CharField(max_length=500, default="")
+    accessory12 = models.CharField(max_length=500, default="")
+    accessory13 = models.CharField(max_length=500, default="")
+
 
 
 class MenColor(models.Model):
@@ -59,6 +65,8 @@ class MenColor(models.Model):
     color6 = models.CharField(max_length=7, default="")
     color7 = models.CharField(max_length=7, default="")
     color8 = models.CharField(max_length=7, default="")
+    color9 = models.CharField(max_length=7, default="")
+    color10 = models.CharField(max_length=7, default="")
 
 
 class WomenColor(models.Model):
@@ -71,6 +79,8 @@ class WomenColor(models.Model):
     color6 = models.CharField(max_length=7, default="")
     color7 = models.CharField(max_length=7, default="")
     color8 = models.CharField(max_length=7, default="")
+    color9 = models.CharField(max_length=7, default="")
+    color10 = models.CharField(max_length=7, default="")
 
 
 def __str__(self):
