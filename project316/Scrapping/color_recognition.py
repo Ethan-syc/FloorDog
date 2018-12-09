@@ -80,10 +80,14 @@ def color_recognition(im):
 	colors_final_noback = np.delete(colors_final, closest_BGR_index, 0)
 
 	if len(colors_final_noback) == 0:
+		#plt.imshow(im); plt.show()
+		#plt.imshow([colors_final]);plt.show()
+		#print(colors_final_noback)
 		return colors_final
 
-
-	#plt.imshow([colors_final]);plt.show()
+	#plt.imshow(im); plt.show()
+	#plt.imshow([colors_final_noback]);plt.show()
+	#print(colors_final_noback)
 
 	#print(colors_final)
 
@@ -153,7 +157,7 @@ def create_xml(colors, url):
 def color_attr(gender):
 	csv_path = os.path.join(csv_dir, gender+'.csv')
 	csv_file = open(csv_path, 'r')
-	csv_color_path = os.path.join(csv_dir, gender+'_color.csv')
+	csv_color_path = os.path.join(csv_dir, gender+'_color_test.csv')
 	csv_color_file = open(csv_color_path, 'w')
 	writer = csv.writer(csv_color_file, delimiter = ',')
 	reader = csv.reader(csv_file, delimiter = ',')
@@ -174,8 +178,9 @@ def color_attr(gender):
 		temp = []
 		temp.append(index)
 		for color in colors:
-			rgb = (color[2], color[1], color[0])
+			rgb = (color[0], color[1], color[2])
 			hex = webcolors.rgb_to_hex(rgb)
+			print(rgb, hex)
 			temp.append(hex)
 		colors = temp
 		writer.writerow(temp)
