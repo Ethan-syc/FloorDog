@@ -6,13 +6,16 @@
         {% load staticfiles %}
         <link href="{% static 'upload/css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
     </head>
-    <body>
 
+    <body>
         <!-- IMPORTANT enctype attribute! -->
-        <form class="dropzone" action="{% url "upload:home" %}" method="post" enctype="multipart/form-data">
+        <form class="dropzone" action="{% url 'upload page' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
+            <table>
+                {{ form.as_p }}
+            </table>
         </form>
-        <button id="submit-all">Upload</button>
+        <button id="submit-all" type="submit">Upload</button>
 
         <script src="{% static 'upload/js/dropzone.js' %}"></script>
         <script type="text/javascript">

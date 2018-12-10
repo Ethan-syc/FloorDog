@@ -49,12 +49,30 @@
                 <!-- Select filter-->
                 <form action="" method="post">
                     {% csrf_token %}
-                    <ul>
+                    <table>
                         {{ form.as_p }}
-                    </ul>
+                    </table>
                     <br><br>
-                    <input type="submit" value="Submit"/>
+{#                    <input type="submit" value="Submit"/>#}
+                    <button type="submit">Submit</button>
                 </form>
+{#                <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>#}
+{#                <script>#}
+{#                    $("#id_gender").change(function () {#}
+{#                        var url = $("#categoryForm").attr("data-categories-url");  // get the url of the `load_cities` view#}
+{#                        var gender = $(this).val();  // get the selected country ID from the HTML input#}
+{##}
+{#                        $.ajax({                       // initialize an AJAX request#}
+{#                            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)#}
+{#                            data: {#}
+{#                                'gender': gender       // add the country id to the GET parameters#}
+{#                            },#}
+{#                            success: function (data) {   // `data` is the return of the `load_cities` view function#}
+{#                                $("#id_category").html(data);  // replace the contents of the city input with the data that came from the server#}
+{#                            }#}
+{#                        });#}
+{#                    });#}
+{#              </script>#}
             </div>
 
 {#            <div class="widget catagory mb-50">#}
