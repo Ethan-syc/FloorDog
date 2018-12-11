@@ -140,7 +140,7 @@ class DesignForm(forms.Form):
 
 
 class UploadForm(forms.ModelForm):
-    gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
+    # gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
     class Meta:
         model = UploadFile
         exclude = ()

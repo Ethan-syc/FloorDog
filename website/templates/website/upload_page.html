@@ -9,20 +9,23 @@
 
     <body>
         <!-- IMPORTANT enctype attribute! -->
-        <form class="dropzone" action="{% url 'upload page' %}" method="post" enctype="multipart/form-data">
+        <form class="dropzone" action="{% url 'upload:home' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
-                {{ upload_form.as_p }}
+                {{ upload_form.as_table }}
             </table>
         </form>
-        <button id="submit-all" type="submit">Upload</button>
+{#        <button id="submit-all" type="submit">Upload</button>#}
+
+        <br>
+        <a href="http://127.0.0.1:8000/upload-gender/">Choose your gender</a>
 
         <script src="{% static 'upload/js/dropzone.js' %}"></script>
         <script type="text/javascript">
             Dropzone.options.myDropzone = {
 
                 // Prevents Dropzone from uploading dropped files immediately
-                autoProcessQueue : false,
+                autoProcessQueue : true,
 
                 init : function() {
                     var submitButton = document.querySelector("#submit-all")

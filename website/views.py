@@ -122,7 +122,7 @@ def upload_page(request):
     upload_form = UploadForm(request.POST, request.FILES)
 
     if request.method == 'POST' and upload_form.is_valid():
-        gender = upload_form.cleaned_data["gender"]
+        # gender = upload_form.cleaned_data["gender"]
         new_file = UploadFile(file=request.FILES['file'])
         new_file.save()
 
@@ -134,7 +134,7 @@ def upload_page(request):
         # recommend()
 
         return HttpResponseRedirect(
-            reverse("upload-result page", args=gender)
+            reverse("upload-gender page")
         )
     else:
         upload_form = UploadForm()
@@ -142,16 +142,16 @@ def upload_page(request):
         return render(request, 'website/upload_page.html', {'upload_form': upload_form})
 
 
-# def upload_gender_page(request):
-#     gender_form = GenderForm(request.POST, prefix='gender')
-#     if request.method == 'POST' and gender_form.is_valid():
-#         gender = gender_form.cleaned_data["gender"]
-#         return HttpResponseRedirect(
-#             reverse("upload-result page", args=gender)
-#         )
-#     else:
-#         gender_form = GenderForm(prefix='gender')
-#         return render(request, 'website/upload_gender.html', {'gender_form': gender_form})
+def upload_gender_page(request):
+    gender_form = GenderForm(request.POST)
+    if request.method == 'POST' and gender_form.is_valid():
+        gender = gender_form.cleaned_data["gender"]
+        return HttpResponseRedirect(
+            reverse("upload-result page", args=gender)
+        )
+    else:
+        gender_form = GenderForm()
+        return render(request, 'website/upload_gender.html', {'gender_form': gender_form})
 
 
 def upload_result_page(request, gender):
