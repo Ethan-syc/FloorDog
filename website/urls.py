@@ -22,7 +22,7 @@ urlpatterns = [
     ),
 
     path(
-        "upload_result/<gender>/<current_time>",
+        "upload-result/<gender>",
         views.upload_result_page,
         name="upload-result page",
     ),

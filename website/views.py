@@ -1,35 +1,19 @@
-import os
-import datetime
+# import os
+# import datetime
+# import subprocess
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
-from django.core.files import *
 
 from .forms import *
 from website.models import *
-from project316.settings import MEDIA_ROOT
+# from . import recommend
 
 
 def index(request):
     return render(request, "website/index.html")
-
-# def load_categories(request):
-#     filter_form = MyGender(request.POST)
-#     if request.method == "POST" and filter_form.is_valid():
-#         gender = filter_form.cleaned_data["gender"]
-#         if gender == 'M':
-#             category = MenClothes.objects.values('category').distinct()
-#         else:
-#             category = WomenClothes.objects.values('category').distinct()
-#         # print(gender)
-#         # print(category)
-#         return render(request, 'website/filter_page_category_dropdown.html', {'category': category})
-#     #     return HttpResponseRedirect(reverse("filter-result page", args=(gender, category)))
-#     else:
-#         filter_form = MyGender()
-#         return render(request, "website/filter_page.html", {"form": filter_form})
 
 
 def filter_page(request):
@@ -53,6 +37,7 @@ def filter_result_page(request, gender, category):
         result_list = MenClothes.objects.filter(category=category)
     else:
         result_list = WomenClothes.objects.filter(category=category)
+
     paginator = Paginator(result_list, 10)
     page = request.GET.get("page", 1)
     try:
@@ -82,6 +67,10 @@ def clothes_detail(request, gender, pk):
     return render(request, "website/detail_page.html", {"clothes": clothes})
 
 
+def recommend():
+    return
+
+
 def upload_page(request):
     upload_form = UploadForm(request.POST, request.FILES)
     if request.method == 'POST' and upload_form.is_valid():
@@ -91,19 +80,23 @@ def upload_page(request):
         new_file.save()
 
         # current_time = datetime.datetime.now().strftime('%H_%M')
-        current_time = "3_14"
+        # current_time = "3_14"
+
+        # subprocess.run("upload/recommend.py")
+        # subprocess.check_call(["python3.7", "/upload/recommend.py"])
+        # recommend()
 
         return HttpResponseRedirect(
-            reverse("upload-result page", args=(gender, current_time))
+            reverse("upload-result page", args=gender)
         )
     else:
         upload_form = UploadForm()
         return render(request, 'website/upload_page.html', {'form': upload_form})
 
 
-def upload_result_page(request, gender, current_time):
-    current_txt = current_time + '.txt'
-    f_path = os.path.join('upload/id_lists/', current_txt)
+def upload_result_page(request, gender):
+    # current_txt = current_time + '.txt'
+    f_path = 'upload/id_lists/result.txt'
     with open(f_path, 'r') as f:
         id_list = f.read().split(',')
 
