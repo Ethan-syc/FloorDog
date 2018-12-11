@@ -50,10 +50,27 @@
                 <form action="" method="post">
                     {% csrf_token %}
                     <table>
-                        {{ form.as_p }}
+                        {{ gender_form.as_table }}
                     </table>
                     <br><br>
-{#                    <input type="submit" value="Submit"/>#}
+
+                    {% csrf_token %}
+                    <table>
+                        {{ filter_form.as_table }}
+                    </table>
+                    <br><br>
+
+                    {% csrf_token %}
+                    <table>
+                        {{ material_form.as_table }}
+                    </table>
+                    <br><br>
+
+                    {% csrf_token %}
+                    <table>
+                        {{ design_form.as_table }}
+                    </table>
+                    <br><br>
                     <button type="submit">Submit</button>
                 </form>
 {#                <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>#}

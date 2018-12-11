@@ -17,26 +17,71 @@ def index(request):
 
 
 def filter_page(request):
+    gender_form = GenderForm(request.POST)
     filter_form = FilterForm(request.POST)
-    if request.method == "POST" and filter_form.is_valid():
-        gender = filter_form.cleaned_data["gender"]
+    material_form = MaterialForm(request.POST)
+    design_form = DesignForm(request.POST)
+
+    if request.method == "POST" and filter_form.is_valid() \
+            and gender_form.is_valid() and material_form.is_valid() and design_form.is_valid():
+
+        gender = gender_form.cleaned_data["gender"]
         category = filter_form.cleaned_data["category"]
-        # print(gender)
-        # print(category)
+        material = material_form.cleaned_data["material"]
+        design = design_form.cleaned_data["design"]
+
         return HttpResponseRedirect(
-            reverse("filter-result page", args=(gender, category))
+            reverse("filter-result page", args=(gender, category, material, design))
         )
+
     else:
+        gender_form = GenderForm()
         filter_form = FilterForm()
-        return render(request, "website/filter_page.html", {"form": filter_form})
+        material_form = MaterialForm()
+        design_form = DesignForm()
+        return render(request, "website/filter_page.html",
+                      {"gender_form": gender_form, "filter_form": filter_form,
+                       "material_form": material_form, "design_form": design_form})
 
 
 # pagination: ref:https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
-def filter_result_page(request, gender, category):
-    if gender == "M":
+def filter_result_page(request, gender, category, material, design):
+    result_list = []
+
+    if gender == "M" and material == "All" and category != "All" and design == "All":
         result_list = MenClothes.objects.filter(category=category)
-    else:
+    if gender == "W" and material == "All" and category != "All" and design == "All":
         result_list = WomenClothes.objects.filter(category=category)
+
+    if gender == "M" and category == "All" and material != "All" and design == "All":
+        result_list = MenClothes.objects.filter(material__icontains=material)
+    if gender == "W" and category == "All" and material != "All" and design == "All":
+        result_list = WomenClothes.objects.filter(material__icontains=material)
+
+    if gender == "M" and category == "All" and material == "All" and design != "All":
+        result_list = MenClothes.objects.filter(clothes_detail__icontains=design)
+    if gender == "W" and category == "All" and material == "All" and design != "All":
+        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design)
+
+    if gender == "M" and category != "All" and material != "All" and design == "All":
+        result_list = MenClothes.objects.filter(category=category).filter(material__icontains=material)
+    if gender == "W" and category != "All" and material != "All" and design == "All":
+        result_list = WomenClothes.objects.filter(category=category).filter(material__icontains=material)
+
+    if gender == "M" and category == "All" and material != "All" and design != "All":
+        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(material__icontains=material)
+    if gender == "W" and category == "All" and material != "All" and design != "All":
+        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(material__icontains=material)
+
+    if gender == "M" and category != "All" and material == "All" and design != "All":
+        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(category=category)
+    if gender == "W" and category != "All" and material == "All" and design != "All":
+        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(category=category)
+
+    if gender == "M" and category != "All" and material != "All" and design != "All":
+        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(category=category).filter(material__icontains=material)
+    if gender == "W" and category != "All" and material != "All" and design != "All":
+        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(category=category).filter(material__icontains=material)
 
     paginator = Paginator(result_list, 10)
     page = request.GET.get("page", 1)
@@ -67,15 +112,12 @@ def clothes_detail(request, gender, pk):
     return render(request, "website/detail_page.html", {"clothes": clothes})
 
 
-def recommend():
-    return
-
-
 def upload_page(request):
+    # gender_form = GenderForm(request.POST, prefix='gender')
     upload_form = UploadForm(request.POST, request.FILES)
+
     if request.method == 'POST' and upload_form.is_valid():
         gender = upload_form.cleaned_data["gender"]
-
         new_file = UploadFile(file=request.FILES['file'])
         new_file.save()
 
@@ -91,7 +133,20 @@ def upload_page(request):
         )
     else:
         upload_form = UploadForm()
-        return render(request, 'website/upload_page.html', {'form': upload_form})
+        # gender_form = GenderForm(prefix='gender')
+        return render(request, 'website/upload_page.html', {'upload_form': upload_form})
+
+
+# def upload_gender_page(request):
+#     gender_form = GenderForm(request.POST, prefix='gender')
+#     if request.method == 'POST' and gender_form.is_valid():
+#         gender = gender_form.cleaned_data["gender"]
+#         return HttpResponseRedirect(
+#             reverse("upload-result page", args=gender)
+#         )
+#     else:
+#         gender_form = GenderForm(prefix='gender')
+#         return render(request, 'website/upload_gender.html', {'gender_form': gender_form})
 
 
 def upload_result_page(request, gender):

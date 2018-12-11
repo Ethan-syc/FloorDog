@@ -12,7 +12,7 @@
         <form class="dropzone" action="{% url 'upload page' %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <table>
-                {{ form.as_p }}
+                {{ upload_form.as_p }}
             </table>
         </form>
         <button id="submit-all" type="submit">Upload</button>

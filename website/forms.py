@@ -5,12 +5,8 @@ from website.models import *
 
 GENDER = (("M", "men"), ("W", "women"))
 
-MEN = (MenClothes.objects.values('category').distinct())
-WOMEN = (WomenClothes.objects.values('category').distinct())
-
-# get CATEGORY using this command: cat men.csv women.csv | cut -d , -f 5 | sort -u > category.txt
-
 CATEGORY = (
+    ("All", "All"),
     ("blazer", "blazer"),
     ("blouse", "blouse"),
     ("bodysuit", "bodysuit"),
@@ -82,14 +78,85 @@ CATEGORY = (
     ("waistcoat", "waistcoat"),
 )
 
+MATERIAL = (
+    ("All", "All"),
+    ("cotton", "cotton"),
+    ("polyester", "polyester"),
+    ("wool", "wool"),
+    ("elastane", "elastane"),
+    ("polyamide", "polyamide"),
+    ("leather", "leather"),
+    ("silk", "silk"),
+    ("polyurethane", "polyurethane"),
+    ("acrylic", "acrylic"),
+    ("cashmere", "cashmere"),
+    ("cupro", "cupro"),
+    ("mohair", "mohair"),
+    ("spandex", "spandex"),
+    ("acetate", "acetate"),
+    ("alpaca", "alpaca"),
+    ("rayon", "rayon"),
+    ("leather", "leather"),
+    ("merino", "merino"),
+    ("linen", "linen"),
+    ("lamb", "lamb"),
+    ("lyocell", "lyocell"),
+    ("calfskin", "calfskin"),
+    ("modal", "modal"),
+    ("lycra", "lycra"),
+    ("fiber", "fiber"),
+    ("cupra", "cupra"),
+    ("angora", "angora"),
+    ("triacetate", "triacetate"),
+    ("camel", "camel"),
+    ("recycled", "recycled"),
+    ("pima", "pima"),
+    ("modacrylic", "modacrylic"),
+    ("lambswool", "lambswool"),
+)
 
-# class MyGender(forms.Form):
-#     gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
+DESIGN = (
+    ("All", "All"),
+    ("Collar", "Collar"),
+    ("Long sleeve", "Long sleeve"),
+    ("Short sleeve", "Short sleeve"),
+    ("Slim-fit", "Slim-fit"),
+    ("Relaxed-fit", "Relaxed-fit"),
+    ("Skinny-fit", "Skinny-fit"),
+    ("knit", "knit"),
+    ("denim", "denim"),
+    ("fleece", "fleece"),
+    ("Button closure", "Button closure"),
+    ("Zip closure", "Zip closure"),
+    ("Mid-rise", "Mid-rise"),
+    ("logo", "logo"),
+    ("crewneck", "crewneck"),
+    ("Spread collar", "Spread collar"),
+    ("Four-pocket", "Four-pocket"),
+    ("embroidered", "embroidered"),
+    ("Five-pocket", "Five-pocket"),
+    ("Three-pocket", "Three-pocket"),
+    ("Straight-leg", "Straight-leg"),
+    ("lapel collar", "lapel collar"),
+    ("stand collar", "stand collar"),
+
+)
+
+
+class GenderForm(forms.Form):
+    gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
 
 
 class FilterForm(forms.Form):
-    gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
     category = forms.ChoiceField(widget=forms.Select(), choices=CATEGORY)
+
+
+class MaterialForm(forms.Form):
+    material = forms.ChoiceField(widget=forms.Select(), choices=MATERIAL)
+
+
+class DesignForm(forms.Form):
+    design = forms.ChoiceField(widget=forms.Select(), choices=DESIGN)
 
 
 class UploadForm(forms.ModelForm):
@@ -97,3 +164,5 @@ class UploadForm(forms.ModelForm):
     class Meta:
         model = UploadFile
         exclude = ()
+
+
