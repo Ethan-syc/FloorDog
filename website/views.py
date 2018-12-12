@@ -55,9 +55,9 @@ def filter_result_page(request, gender, category, material, design):
         result_list = WomenClothes.objects.all()
 
     if gender == "M" and material == "All" and category != "All" and design == "All":
-        result_list = MenClothes.objects.filter(category__icontains=category)
+        result_list = MenClothes.objects.filter(clothes_name__icontains=category)
     if gender == "W" and material == "All" and category != "All" and design == "All":
-        result_list = WomenClothes.objects.filter(category__icontains=category)
+        result_list = WomenClothes.objects.filter(clothes_name__icontains=category)
 
     if gender == "M" and category == "All" and material != "All" and design == "All":
         result_list = MenClothes.objects.filter(material__icontains=material)
@@ -70,9 +70,9 @@ def filter_result_page(request, gender, category, material, design):
         result_list = WomenClothes.objects.filter(clothes_detail__icontains=design)
 
     if gender == "M" and category != "All" and material != "All" and design == "All":
-        result_list = MenClothes.objects.filter(category__icontains=category).filter(material__icontains=material)
+        result_list = MenClothes.objects.filter(clothes_name__icontains=category).filter(material__icontains=material)
     if gender == "W" and category != "All" and material != "All" and design == "All":
-        result_list = WomenClothes.objects.filter(category__icontains=category).filter(material__icontains=material)
+        result_list = WomenClothes.objects.filter(clothes_name__icontains=category).filter(material__icontains=material)
 
     if gender == "M" and category == "All" and material != "All" and design != "All":
         result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(material__icontains=material)
@@ -80,14 +80,14 @@ def filter_result_page(request, gender, category, material, design):
         result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(material__icontains=material)
 
     if gender == "M" and category != "All" and material == "All" and design != "All":
-        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(category__icontains=category)
+        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(clothes_name__icontains=category)
     if gender == "W" and category != "All" and material == "All" and design != "All":
-        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(category__icontains=category)
+        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(clothes_name__icontains=category)
 
     if gender == "M" and category != "All" and material != "All" and design != "All":
-        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(category__icontains=category).filter(material__icontains=material)
+        result_list = MenClothes.objects.filter(clothes_detail__icontains=design).filter(clothes_name__icontains=category).filter(material__icontains=material)
     if gender == "W" and category != "All" and material != "All" and design != "All":
-        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(category__icontains=category).filter(material__icontains=material)
+        result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(clothes_name__icontains=category).filter(material__icontains=material)
 
     paginator = Paginator(result_list, 12)
     page = request.GET.get("page", 1)

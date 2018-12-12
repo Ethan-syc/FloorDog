@@ -3,7 +3,7 @@ from upload.models import UploadFile
 from website.models import *
 
 
-GENDER = (("M", "men"), ("W", "women"))
+GENDER = (("W", "Women"), ("M", "Men"))
 
 CATEGORY = (
     ("All", "All"),
