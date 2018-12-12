@@ -55,43 +55,41 @@
         <!-- Header Area Start -->
         <!-- Header Area End -->
 
-        <div class="shop_sidebar_area" style = "flex: 0 0 200px";>
+        <div class="shop_sidebar_area" style = "flex: 0 0 190px";>
             <!-- ##### Single Widget ##### -->
 
-
             <div>
-
                 <form action="" method="post">
                     {% csrf_token %}
 
                     <ul>
                         {{ gender_form.as_p }}
                     </ul>
-                    <br><br>
+                    <br><br><br>
 
                     {% csrf_token %}
                     <ul>
                         {{ filter_form.as_p }}
                     </ul>
-                    <br><br>
+                    <br><br><br>
 
                     {% csrf_token %}
                     <ul>
                         {{ material_form.as_p }}
                     </ul>
-                    <br><br>
+                    <br><br><br>
 
                     {% csrf_token %}
                     <ul>
                         {{ design_form.as_p }}
                     </ul>
-                    <br><br>
+                    <br><br><br>
 
                     {% csrf_token %}
                     <ul>
                         {{ color_form.as_p }}
                     </ul>
-                    <br><br>
+                    <br><br><br>
                     <button type="submit" class="btn btn-info btn-submit" style="margin-top: 23px; font-size: 15px; font-family:Raleway">Submit</button>
 
                 </form>
