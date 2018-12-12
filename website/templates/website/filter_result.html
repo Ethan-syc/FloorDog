@@ -58,6 +58,7 @@
 
         <!-- Header Area End -->
 
+
         <!-- <h2>==================我是分割线==================</h2> -->
         <div class="search-result" style="margin-top: 50px; margin-left: 20px;" >
 
@@ -77,6 +78,7 @@
 
                 <img class="model-image" src={{ result.pic_url }}>
                 <p class="see-detail"> <a class="image-link" href ="{% url 'clothes-detail page' gender result.pk %}">{{ result.clothes_name }}</a></p>
+
                 {#TODO add the field we want to show#}
             </tr>
           </div>
@@ -128,6 +130,7 @@
             {% endif %}
         </ul>
       </div>
+
 
 <div class="footer">
   <div class="footer-links">

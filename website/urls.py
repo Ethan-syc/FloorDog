@@ -8,7 +8,7 @@ urlpatterns = [
     path('upload/', views.upload_page, name='upload page'),
 
     path(
-        "filter-result/<gender>/<category>",
+        "filter-result/<gender>/<category>/<material>/<design>",
         views.filter_result_page,
         name="filter-result page",
     ),
@@ -17,5 +17,17 @@ urlpatterns = [
         "clothes-detail/<gender>/<int:pk>",
         views.clothes_detail,
         name="clothes-detail page",
+    ),
+
+    path(
+        'upload-gender/',
+        views.upload_gender_page,
+        name='upload-gender page'
+    ),
+
+    path(
+        "upload-result/<gender>",
+        views.upload_result_page,
+        name="upload-result page",
     ),
 ]

@@ -63,12 +63,49 @@
 
                 <form action="" method="post">
                     {% csrf_token %}
-                    <ul>
-                        {{ form.as_p }}
-                    </ul>
 
+                    <ul>
+                        {{ gender_form.as_p }}
+                    </ul>
+                    <br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ filter_form.as_p }}
+                    </ul>
+                    <br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ material_form.as_p }}
+                    </ul>
+                    <br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ design_form.as_p }}
+                    </ul>
+                    <br><br>
                     <button type="submit" class="btn btn-info btn-submit" style="margin-top: 23px; font-size: 15px; font-family:Raleway">Submit</button>
+
                 </form>
+{#                <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>#}
+{#                <script>#}
+{#                    $("#id_gender").change(function () {#}
+{#                        var url = $("#categoryForm").attr("data-categories-url");  // get the url of the `load_cities` view#}
+{#                        var gender = $(this).val();  // get the selected country ID from the HTML input#}
+{##}
+{#                        $.ajax({                       // initialize an AJAX request#}
+{#                            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)#}
+{#                            data: {#}
+{#                                'gender': gender       // add the country id to the GET parameters#}
+{#                            },#}
+{#                            success: function (data) {   // `data` is the return of the `load_cities` view function#}
+{#                                $("#id_category").html(data);  // replace the contents of the city input with the data that came from the server#}
+{#                            }#}
+{#                        });#}
+{#                    });#}
+{#              </script>#}
             </div>
 
 

@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.template import RequestContext
 from django.urls import reverse
 from django.shortcuts import render
 
@@ -19,4 +18,4 @@ def home(request):
         form = UploadFileForm()
 
     data = {'form': form}
-    return render(request, 'upload/index.html', data)
+    return render(request, 'website/upload_page.html', data)

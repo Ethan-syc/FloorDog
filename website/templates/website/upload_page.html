@@ -6,20 +6,28 @@
         {% load staticfiles %}
         <link href="{% static 'upload/css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
     </head>
-    <body>
 
+    <body>
         <!-- IMPORTANT enctype attribute! -->
-        <form style=" margin-top: 100px; border: 2px, black" class="dropzone dropbox" action="{% url "upload:home" %}" method="post" enctype="multipart/form-data">
+
+        <form class="dropzone" action="{% url 'upload:home' %}" method="post" enctype="multipart/form-data">
+
             {% csrf_token %}
+            <table>
+                {{ upload_form.as_table }}
+            </table>
         </form>
-        <button id="submit-all">Upload</button>
+{#        <button id="submit-all" type="submit">Upload</button>#}
+
+        <br>
+        <a href="http://127.0.0.1:8000/upload-gender/">Choose your gender</a>
 
         <script src="{% static 'upload/js/dropzone.js' %}"></script>
         <script type="text/javascript">
             Dropzone.options.myDropzone = {
 
                 // Prevents Dropzone from uploading dropped files immediately
-                autoProcessQueue : false,
+                autoProcessQueue : true,
 
                 init : function() {
                     var submitButton = document.querySelector("#submit-all")
