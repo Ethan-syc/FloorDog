@@ -124,6 +124,7 @@ DESIGN = (
 
 COLOR = (
     ("All", "All"),
+    ("beige", "beige"),
     ("blue", "blue"),
     ("black", "black"),
     ("brown", "brown"),
