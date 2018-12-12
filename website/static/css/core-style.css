@@ -540,8 +540,8 @@ img {
     position: relative;
     z-index: 1;
     -webkit-box-flex: 0;
-    -ms-flex: 0 0 230px;
-    flex: 0 0 220px;
+    /*-ms-flex: 0 0 200px;*/
+    flex: 0 0 200px;
     width: 300px;
     max-width: 300px;
     background-color: #f5f7fa;
