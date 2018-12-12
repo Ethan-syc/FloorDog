@@ -34,7 +34,7 @@ def filter_result_page(request, gender, category):
         result_list = MenClothes.objects.filter(category=category)
     else:
         result_list = WomenClothes.objects.filter(category=category)
-    paginator = Paginator(result_list, 10)
+    paginator = Paginator(result_list, 12)
     page = request.GET.get("page", 1)
     try:
         paginated_result_list = paginator.page(page)

@@ -9,7 +9,7 @@
     <body>
 
         <!-- IMPORTANT enctype attribute! -->
-        <form class="dropzone" action="{% url "upload:home" %}" method="post" enctype="multipart/form-data">
+        <form style=" margin-top: 100px; border: 2px, black" class="dropzone dropbox" action="{% url "upload:home" %}" method="post" enctype="multipart/form-data">
             {% csrf_token %}
         </form>
         <button id="submit-all">Upload</button>

@@ -184,8 +184,8 @@
   box-sizing: border-box; }
 
 .dropzone {
-  min-height: 150px;
-  border: 2px dashed rgb(0, 135, 247);
+  min-height: 300px;
+  border: 2px;
   background: #E5E5E5;
   padding: 20px 20px;
   max-width: 500px;
@@ -407,3 +407,9 @@
         border-left: 6px solid transparent;
         border-right: 6px solid transparent;
         border-bottom: 6px solid #be2626; }
+
+
+
+.dropbox {
+  margin-top : 100px;
+}
