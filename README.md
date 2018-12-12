@@ -57,293 +57,150 @@ The most significant limitation is that we still run FloorDog on local host, whi
 The database on postgreSQL is also not shared. We need to create a new project316 database on each new computer that runs FloorDog.
 <br>
 ## Tree of FloorDog directory:
-Documents/GitHub/FloorDog
+Documents/GitHub/FloorDog <br>
 ├── CSVs <br>
 │   ├── description.txt <br>
-│   ├── men.csv
-│   ├── men_color.csv
-│   ├── men_des_dict.csv
-│   ├── women.csv
-│   ├── women_color.csv
-│   └── women_mat_dict.csv
-├── README.md
-├── __pycache__
-│   └── manage.cpython-37.pyc
-├── category.txt
-├── create.sql
-├── manage.py
-├── project316
-│   ├── Scrapping
-│   │   ├── color_recognition.py
-│   │   ├── comb_scrapping.py
-│   │   ├── des_dict.py
-│   │   ├── encode_comb.py
-│   │   ├── get_comb_url.py
-│   │   ├── get_img_url.py
-│   │   ├── get_product_description.py
-│   │   ├── get_product_url.py
-│   │   ├── item_scrapping.py
-│   │   ├── merge_csv.py
-│   │   ├── scrape.py
-│   │   ├── scrapping_tools.py
-│   │   ├── ssense.py
-│   │   ├── ssense_with_comb.py
-│   │   └── test.py
-│   ├── __init__.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-37.pyc
-│   │   ├── settings.cpython-37.pyc
-│   │   ├── urls.cpython-37.pyc
-│   │   └── wsgi.cpython-37.pyc
-│   ├── settings.py
-│   ├── urls.py
-│   └── wsgi.py
-├── requirements.txt
-├── templates
-├── upload
-│   ├── __init__.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-37.pyc
-│   │   ├── admin.cpython-37.pyc
-│   │   ├── forms.cpython-37.pyc
-│   │   ├── models.cpython-37.pyc
-│   │   ├── urls.cpython-37.pyc
-│   │   └── views.cpython-37.pyc
-│   ├── admin.py
-│   ├── apps.py
-│   ├── forms.py
-│   ├── migrations
-│   │   ├── 0001_initial.py
-│   │   ├── __init__.py
-│   │   └── __pycache__
-│   │       ├── 0001_initial.cpython-37.pyc
-│   │       └── __init__.cpython-37.pyc
-│   ├── models.py
-│   ├── recommend.py
-│   ├── static
-│   │   └── upload
-│   │       ├── css
-│   │       │   ├── basic.css
-│   │       │   ├── dropzone.css
-│   │       │   └── stylus
-│   │       ├── images
-│   │       └── js
-│   │           ├── dropzone-amd-module.js
-│   │           ├── dropzone-amd-module.min.js
-│   │           ├── dropzone.js
-│   │           └── dropzone.min.js
-│   ├── templates
-│   │   └── upload
-│   │       └── index.html
-│   ├── tests.py
-│   ├── urls.py
-│   └── views.py
-├── venv
-│   ├── bin
-│   │   ├── __pycache__
-│   │   │   └── django-admin.cpython-37.pyc
-│   │   ├── activate
-│   │   ├── activate.csh
-│   │   ├── activate.fish
-│   │   ├── django-admin
-│   │   ├── django-admin.py
-│   │   ├── easy_install
-│   │   ├── easy_install-3.7
-│   │   ├── pip
-│   │   ├── pip3
-│   │   ├── pip3.7
-│   │   ├── python
-│   │   ├── python3
-│   │   └── python3.7
-│   ├── include
-│   ├── lib
-│   │   └── python3.7
-│   │       └── site-packages
-│   │           ├── Django-2.1.3.dist-info
-│   │           ├── django
-│   │           ├── easy-install.pth
-│   │           ├── pip-10.0.1-py3.7.egg
-│   │           ├── psycopg2
-│   │           ├── psycopg2-2.7.5.dist-info
-│   │           ├── psycopg2_binary-2.7.6.1.dist-info
-│   │           ├── pytz
-│   │           ├── pytz-2018.7.dist-info
-│   │           ├── setuptools-39.1.0-py3.7.egg
-│   │           └── setuptools.pth
-│   ├── pip-selfcheck.json
-│   └── pyvenv.cfg
-└── website
-    ├── __init__.py
-    ├── __pycache__
-    │   ├── __init__.cpython-37.pyc
-    │   ├── admin.cpython-37.pyc
-    │   ├── apps.cpython-37.pyc
-    │   ├── color_recognition_tool.cpython-37.pyc
-    │   ├── fas_resnet_pred.cpython-37.pyc
-    │   ├── forms.cpython-37.pyc
-    │   ├── models.cpython-37.pyc
-    │   ├── rec_tools.cpython-37.pyc
-    │   ├── recommend.cpython-37.pyc
-    │   ├── urls.cpython-37.pyc
-    │   └── views.cpython-37.pyc
-    ├── admin.py
-    ├── apps.py
-    ├── color_recognition_tool.py
-    ├── fas_resnet_pred.py
-    ├── forms.py
-    ├── id_lists
-    ├── migrations
-    │   ├── 0001_initial.py
-    │   ├── 0002_auto_20181205_2057.py
-    │   ├── 0003_auto_20181205_2057.py
-    │   ├── 0004_auto_20181205_2101.py
-    │   ├── 0005_auto_20181205_2104.py
-    │   ├── 0006_auto_20181205_2109.py
-    │   ├── 0007_auto_20181205_2148.py
-    │   ├── 0008_auto_20181205_2150.py
-    │   ├── 0009_auto_20181206_0535.py
-    │   ├── 0010_auto_20181207_2347.py
-    │   ├── 0011_auto_20181207_2348.py
-    │   ├── 0012_uploadfile.py
-    │   ├── 0013_delete_uploadfile.py
-    │   ├── __init__.py
-    │   └── __pycache__
-    │       ├── 0001_initial.cpython-37.pyc
-    │       ├── 0002_auto_20181205_2057.cpython-37.pyc
-    │       ├── 0003_auto_20181205_2057.cpython-37.pyc
-    │       ├── 0004_auto_20181205_2101.cpython-37.pyc
-    │       ├── 0005_auto_20181205_2104.cpython-37.pyc
-    │       ├── 0006_auto_20181205_2109.cpython-37.pyc
-    │       ├── 0007_auto_20181205_2148.cpython-37.pyc
-    │       ├── 0008_auto_20181205_2150.cpython-37.pyc
-    │       ├── 0009_auto_20181206_0535.cpython-37.pyc
-    │       ├── 0010_auto_20181207_2347.cpython-37.pyc
-    │       ├── 0011_auto_20181207_2348.cpython-37.pyc
-    │       ├── 0012_uploadfile.cpython-37.pyc
-    │       ├── 0013_delete_uploadfile.cpython-37.pyc
-    │       └── __init__.cpython-37.pyc
-    ├── models.py
-    ├── rec_tools.py
-    ├── recommend.py
-    ├── static
-    │   ├── css
-    │   │   ├── animate.css
-    │   │   ├── bootstrap.min.css
-    │   │   ├── classy-nav.min.css
-    │   │   ├── core-style.css
-    │   │   ├── core-style.css.map
-    │   │   ├── customize.css
-    │   │   ├── font-awesome.min.css
-    │   │   ├── jquery-ui.min.css
-    │   │   ├── magnific-popup.css
-    │   │   ├── nice-select.css
-    │   │   ├── owl.carousel.css
-    │   │   └── style.css
-    │   ├── fonts
-    │   │   ├── FontAwesome.otf
-    │   │   ├── fontawesome-webfont.eot
-    │   │   ├── fontawesome-webfont.svg
-    │   │   ├── fontawesome-webfont.ttf
-    │   │   ├── fontawesome-webfont.woff
-    │   │   ├── fontawesome-webfont.woff2
-    │   │   ├── helvetica_neu_bold-webfont.ttf
-    │   │   ├── helvetica_neu_bold-webfont.woff
-    │   │   ├── helvetica_neu_bold-webfont.woff2
-    │   │   ├── helveticaneue_medium-webfont.ttf
-    │   │   ├── helveticaneue_medium-webfont.woff
-    │   │   └── helveticaneue_medium-webfont.woff2
-    │   ├── img
-    │   │   ├── bg-img
-    │   │   │   ├── 1.jpg
-    │   │   │   ├── 2.jpg
-    │   │   │   ├── 3.jpg
-    │   │   │   ├── 4.jpg
-    │   │   │   ├── 5.jpg
-    │   │   │   ├── 6.jpg
-    │   │   │   ├── 7.jpg
-    │   │   │   ├── 8.jpg
-    │   │   │   ├── 9.jpg
-    │   │   │   ├── cart1.jpg
-    │   │   │   ├── cart2.jpg
-    │   │   │   └── cart3.jpg
-    │   │   ├── core-img
-    │   │   │   ├── favicon.ico
-    │   │   │   ├── logo.png
-    │   │   │   ├── logo2.png
-    │   │   │   └── search.png
-    │   │   ├── hover-img
-    │   │   │   ├── product1.jpeg
-    │   │   │   ├── product1.jpg
-    │   │   │   ├── product2.jpeg
-    │   │   │   ├── product2.jpg
-    │   │   │   ├── product3.jpeg
-    │   │   │   ├── product3.jpg
-    │   │   │   ├── product4.jpg
-    │   │   │   ├── product41.jpg
-    │   │   │   ├── product5.jpg
-    │   │   │   └── product6.jpg
-    │   │   ├── icon-img
-    │   │   │   ├── cole.png
-    │   │   │   └── dress.png
-    │   │   └── product-img
-    │   │       ├── pro-big-1.jpg
-    │   │       ├── pro-big-2.jpg
-    │   │       ├── pro-big-3.jpg
-    │   │       ├── pro-big-4.jpg
-    │   │       ├── product1.jpeg
-    │   │       ├── product1.jpg
-    │   │       ├── product2.jpg
-    │   │       ├── product2.png
-    │   │       ├── product3.jpeg
-    │   │       ├── product3.jpg
-    │   │       ├── product41.jpg
-    │   │       ├── product5.jpeg
-    │   │       ├── product5.jpg
-    │   │       └── product6.jpg
-    │   ├── js
-    │   │   ├── active.js
-    │   │   ├── bootstrap.min.js
-    │   │   ├── classy-nav.min.js
-    │   │   ├── jquery
-    │   │   │   └── jquery-2.2.4.min.js
-    │   │   ├── map-active.js
-    │   │   ├── plugins.js
-    │   │   ├── popper.min.js
-    │   │   └── upload.js
-    │   ├── scss
-    │   │   ├── _mixin.scss
-    │   │   ├── _responsive.scss
-    │   │   ├── _theme_color.scss
-    │   │   ├── _variables.scss
-    │   │   ├── style.scss
-    │   │   └── upload.scss
-    │   └── website
-    │       └── images
-    ├── support
-    │   ├── fas_resnet101_men_100000.pt
-    │   ├── fas_resnet101_women_100000.pt
-    │   ├── men_complete_coding.csv
-    │   └── women_complete_coding.csv
-    ├── templates
-    │   └── website
-    │       ├── detail_page.html
-    │       ├── filter_page.html
-    │       ├── filter_result.html
-    │       ├── index.html
-    │       ├── upload_gender.html
-    │       ├── upload_page.html
-    │       └── upload_result.html
-    ├── templatetags
-    │   ├── __init__.py
-    │   ├── __pycache__
-    │   │   ├── __init__.cpython-37.pyc
-    │   │   ├── proper_pagination.cpython-37.pyc
-    │   │   └── url_replace.cpython-37.pyc
-    │   ├── proper_pagination.py
-    │   └── url_replace.py
-    ├── tests.py
-    ├── uploaded_files
-    ├── urls.py
-    └── views.py
+│   ├── men.csv <br>
+│   ├── men_color.csv <br>
+│   ├── men_des_dict.csv <br>
+│   ├── women.csv <br>
+│   ├── women_color.csv <br>
+│   └── women_mat_dict.csv <br>
+├── README.md <br>
+├── __pycache__ <br>
+├── category.txt <br>
+├── create.sql <br>
+├── manage.py <br>
+├── project316 <br>
+│   ├── Scrapping <br>
+│   │   ├── color_recognition.py <br>
+│   │   ├── comb_scrapping.py <br>
+│   │   ├── des_dict.py <br>
+│   │   ├── encode_comb.py <br>
+│   │   ├── get_comb_url.py <br>
+│   │   ├── get_img_url.py <br>
+│   │   ├── get_product_description.py <br>
+│   │   ├── get_product_url.py <br>
+│   │   ├── item_scrapping.py <br>
+│   │   ├── merge_csv.py <br>
+│   │   ├── scrape.py <br>
+│   │   ├── scrapping_tools.py <br>
+│   │   ├── ssense.py <br>
+│   │   ├── ssense_with_comb.py <br>
+│   │   └── test.py <br>
+│   ├── __init__.py <br>
+│   ├── __pycache__ <br>
+│   ├── settings.py <br>
+│   ├── urls.py <br>
+│   └── wsgi.py <br>
+├── requirements.txt <br>
+├── templates <br>
+├── upload <br>
+│   ├── __init__.py <br>
+│   ├── __pycache__ <br>
+│   ├── admin.py <br>
+│   ├── apps.py <br>
+│   ├── forms.py <br>
+│   ├── migrations <br>
+│   ├── models.py <br>
+│   ├── recommend.py <br>
+│   ├── static <br>
+│   │   └── upload <br>
+│   │       ├── css <br>
+│   │       │   ├── basic.css <br>
+│   │       │   ├── dropzone.css <br>
+│   │       │   └── stylus <br>
+│   │       ├── images <br>
+│   │       └── js <br>
+│   │           ├── dropzone-amd-module.js <br>
+│   │           ├── dropzone-amd-module.min.js <br>
+│   │           ├── dropzone.js <br>
+│   │           └── dropzone.min.js <br>
+│   ├── templates <br>
+│   │   └── upload <br>
+│   │       └── index.html <br>
+│   ├── tests.py <br>
+│   ├── urls.py <br>
+│   └── views.py <br>
+├── venv <br>
+│   ├── bin <br>
+│   │   ├── __pycache__ <br>
+│   │   │   └── django-admin.cpython-37.pyc <br>
+│   │   ├── activate <br>
+│   │   ├── activate.csh <br>
+│   │   ├── activate.fish <br>
+│   │   ├── django-admin <br>
+│   │   ├── django-admin.py <br>
+│   │   ├── easy_install <br>
+│   │   ├── easy_install-3.7 <br>
+│   │   ├── pip <br>
+│   │   ├── pip3 <br>
+│   │   ├── pip3.7 <br>
+│   │   ├── python <br>
+│   │   ├── python3 <br>
+│   │   └── python3.7 <br>
+│   ├── include <br>
+│   ├── lib <br>
+│   │   └── python3.7 <br>
+│   │       └── site-packages <br>
+│   ├── pip-selfcheck.json <br>
+│   └── pyvenv.cfg <br>
+└── website <br>
+    ├── __init__.py <br>
+    ├── __pycache__ <br>
+    ├── admin.py <br>
+    ├── apps.py <br>
+    ├── color_recognition_tool.py <br>
+    ├── fas_resnet_pred.py <br>
+    ├── forms.py <br>
+    ├── id_lists <br>
+    ├── migrations <br>
+    ├── models.py <br>
+    ├── rec_tools.py <br>
+    ├── recommend.py <br>
+    ├── static <br>
+    │   ├── css <br>
+    │   │   ├── animate.css <br>
+    │   │   ├── bootstrap.min.css<br>
+    │   │   ├── classy-nav.min.css<br>
+    │   │   ├── core-style.css<br>
+    │   │   ├── core-style.css.map<br>
+    │   │   ├── customize.css<br>
+    │   │   ├── font-awesome.min.css<br>
+    │   │   ├── jquery-ui.min.css<br>
+    │   │   ├── magnific-popup.css<br>
+    │   │   ├── nice-select.css<br>
+    │   │   ├── owl.carousel.css<br>
+    │   │   └── style.css<br>
+    │   ├── fonts<br>
+    │   ├── img<br>
+    │   │   ├── bg-img<br>
+    │   │   ├── core-img<br>
+    │   │   ├── hover-img<br>
+    │   │   ├── icon-img<br>
+    │   │   └── product-img<br>
+    │   ├── js<br>
+    │   ├── scss<br>
+    │   └── website<br>
+    │       └── images<br>
+    ├── support<br>
+    │   ├── fas_resnet101_men_100000.pt<br>
+    │   ├── fas_resnet101_women_100000.pt<br>
+    │   ├── men_complete_coding.csv<br>
+    │   └── women_complete_coding.csv<br>
+    ├── templates<br>
+    │   └── website<br>
+    │       ├── detail_page.html<br>
+    │       ├── filter_page.html<br>
+    │       ├── filter_result.html<br>
+    │       ├── index.html<br>
+    │       ├── upload_gender.html<br>
+    │       ├── upload_page.html<br>
+    │       └── upload_result.html<br>
+    ├── templatetags<br>
+    ├── tests.py<br>
+    ├── uploaded_files<br>
+    ├── urls.py<br>
+    └── views.py<br>
 <br>
 58 directories, 229 files
