@@ -411,5 +411,8 @@
 
 
 .dropbox {
-  margin-top : 100px;
+  margin-top : 80px;
+  opacity: 0.8;
+  border-radius: 10px;
+  border-color: blue;
 }
