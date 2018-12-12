@@ -6,25 +6,25 @@ This is the repo for Duke University COMPSCI 316 Introduction to Databases's tea
 This repo should be under MIT license
 <br>
 ## Brief overview of code structure:
-CSVs directory stores the major data sources of FloorDog.
-website directory stores the Django app website. Important files are:
-	1. forms.py: sets up forms that will be sent in our browser,
-	2. views.py: controls the execution and function of FloorDog.
-	3. models.py: database schema
-	4. urls.py: controls how each type of url's parameter, correlated views.py method, and name for reverse() function.
-	5. rec_tools.py and related programs for recommendation as well as neural network training.
-	6. static directory stores the images, css, javascript, fonts for our HTMLs.
-	7. template/website directory stores our HTML templates.
-	8. support directory stores the training weight of FloorDog's color recognition and category prediction neural network.
-upload directory stores the Dropzone.js implementation of our Drag and Drop file-uploading function.
-venv directory stores the nesccesry file for Django execution.
-project316 directory stores the major python program that set up the Django environment, including settings.py.
+CSVs directory stores the major data sources of FloorDog. <br>
+website directory stores the Django app website. Important files are: <br>
+	1. forms.py: sets up forms that will be sent in our browser, <br>
+	2. views.py: controls the execution and function of FloorDog. <br>
+	3. models.py: database schema <br>
+	4. urls.py: controls how each type of url's parameter, correlated views.py method, and name for reverse() function.<br>
+	5. rec_tools.py and related programs for recommendation as well as neural network training.<br>
+	6. static directory stores the images, css, javascript, fonts for our HTMLs.<br>
+	7. template/website directory stores our HTML templates.<br>
+	8. support directory stores the training weight of FloorDog's color recognition and category prediction neural network.<br>
+upload directory stores the Dropzone.js implementation of our Drag and Drop file-uploading function.<br>
+venv directory stores the nesccesry file for Django execution.<br>
+project316 directory stores the major python program that set up the Django environment, including settings.py.<br>
 <br>
 ## Transfer the database:
-Make sure postgreSQL is already installed in your environment.
-In your postgreSQL environment, type in "create database project316"
-After the database have been set up, return to terminal and try to run the server by inputing "python mange.py runserver" under FloorDog directory.
-If error occures, open project316/settings.py, and made related changes in the code for implementing database. In most case, delete the line of USER and PASSWORD would be sufficient.
+Make sure postgreSQL is already installed in your environment.<br>
+In your postgreSQL environment, type in "create database project316"<br>
+After the database have been set up, return to terminal and try to run the server by inputing "python mange.py runserver" under FloorDog directory.<br>
+If error occures, open project316/settings.py, and made related changes in the code for implementing database. In most case, delete the line of USER and PASSWORD would be sufficient.<br>
 <quote>
 	DATABASES = {
     'default': {
@@ -37,23 +37,23 @@ If error occures, open project316/settings.py, and made related changes in the c
     }
 }
 </quote>
-If the server can be run suffecessfully, open FloorDog/create.sql, change the command into your own path.
+If the server can be run suffecessfully, open FloorDog/create.sql, change the command into your own path.<br>
 <quoate>
 	copy website_modelName from '/path/to/csv/file.csv' with delimiter ',' NULL as E'\'\'' CSV;
 </quoate>
-Either run the changed create.sql, or just open the postgreSQL shell, and copy each command into the shell. Sucessful transferation should be visibale through the prompt.
+Either run the changed create.sql, or just open the postgreSQL shell, and copy each command into the shell. Sucessful transferation should be visibale through the prompt.<br>
 <br>
 ## Adjust the neural network:
 If you want to adjust the training weight of FloorDog's neural network, you can find it in website/support directory.
 <br>
 ## Open FloorDog
-To open FloorDog, firstly make sure the uploaded_files directory at FloorDog/website/uploaded_files is being emptyed. 
-Then, open the terminal/pyCharm, make sure the current directory is FloorDog, and typed in the commend "python manage.py runserver".
-Open the local host address provided in the prompt, which should be http://127.0.0.1:8000/
-FloorDog should now be opened and ready to use in your browser.
+To open FloorDog, firstly make sure the uploaded_files directory at FloorDog/website/uploaded_files is being emptyed. <br>
+Then, open the terminal/pyCharm, make sure the current directory is FloorDog, and typed in the commend "python manage.py runserver".<br>
+Open the local host address provided in the prompt, which should be http://127.0.0.1:8000/ <br>
+FloorDog should now be opened and ready to use in your browser.<br>
 <br>
 ## Limitation of current implementation:
-The most significant limitation is that we still run FloorDog on local host, which hugely limites its capabilities.
+The most significant limitation is that we still run FloorDog on local host, which hugely limites its capabilities.<br>
 The database on postgreSQL is also not shared. We need to create a new project316 database on each new computer that runs FloorDog.
 <br>
 ## Tree of FloorDog directory:
