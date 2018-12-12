@@ -89,23 +89,6 @@
                     <button type="submit" class="btn btn-info btn-submit" style="margin-top: 23px; font-size: 15px; font-family:Raleway">Submit</button>
 
                 </form>
-{#                <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>#}
-{#                <script>#}
-{#                    $("#id_gender").change(function () {#}
-{#                        var url = $("#categoryForm").attr("data-categories-url");  // get the url of the `load_cities` view#}
-{#                        var gender = $(this).val();  // get the selected country ID from the HTML input#}
-{##}
-{#                        $.ajax({                       // initialize an AJAX request#}
-{#                            url: url,                    // set the url of the request (= localhost:8000/hr/ajax/load-cities/)#}
-{#                            data: {#}
-{#                                'gender': gender       // add the country id to the GET parameters#}
-{#                            },#}
-{#                            success: function (data) {   // `data` is the return of the `load_cities` view function#}
-{#                                $("#id_category").html(data);  // replace the contents of the city input with the data that came from the server#}
-{#                            }#}
-{#                        });#}
-{#                    });#}
-{#              </script>#}
             </div>
 
 
@@ -150,10 +133,7 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <!-- <p class="product-price">Women's Sweater</p> -->
-                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/sweater">Women's Sweater</a>
-{#                                    <a href="{% url "clothes-detail page" %}">#}
-
-                                    </a>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/sweater/All/All">Women's Sweater</a>
                                 </div>
                             </div>
                         </div>
@@ -176,10 +156,7 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">Women's Outerwear</p>
-{#                                    <a href="{% url "clothes-detail page" %}">#}
-
-                                    </a>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/outerwear/All/All">Women's Outerwear</a>
                                 </div>
                                 <!-- Ratings & Cart -->
 
@@ -204,13 +181,8 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">Men's Jacket</p>
-{#                                    <a href="{% url "clothes-detail page" %}">#}
-
-                                    </a>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/M/jacket/All/All">Men's Jacket</a>
                                 </div>
-                                <!-- Ratings & Cart -->
-
                             </div>
                         </div>
                     </div>
@@ -233,12 +205,7 @@
                                 <div class="product-meta-data">
                                     <div class="line"></div>
                                     <p class="product-price">Accessories</p>
-{#                                    <a href="{% url "clothes-detail page" %}">#}
-
-                                    </a>
                                 </div>
-                                <!-- Ratings & Cart -->
-
                             </div>
                         </div>
                     </div>
@@ -260,13 +227,8 @@
                                 <!-- Product Meta Data -->
                                 <div class="product-meta-data">
                                     <div class="line"></div>
-                                    <p class="product-price">Women's Top</p>
-{#                                    <a href="{% url "clothes-detail page" %}">#}
-
-                                    </a>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/top/All/All">Women's Top</a>
                                 </div>
-                                <!-- Ratings & Cart -->
-
                             </div>
                         </div>
                     </div>

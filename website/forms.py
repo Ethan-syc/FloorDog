@@ -32,6 +32,7 @@ CATEGORY = (
     ("kilt", "kilt"),
     ("leggings", "leggings"),
     ("miniskirt", "miniskirt"),
+    ("outerwear", "outerwear"),
     ("overalls", "overalls"),
     ("overcoat", "overcoat"),
     ("overshirt", "overshirt"),
@@ -140,7 +141,6 @@ class DesignForm(forms.Form):
 
 
 class UploadForm(forms.ModelForm):
-    # gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
     class Meta:
         model = UploadFile
         exclude = ()
