@@ -5,23 +5,22 @@
         <title>FloorDog | Upload</title>
         {% load staticfiles %}
         <link href="{% static 'upload/css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
     </head>
 
     <body>
         <!-- IMPORTANT enctype attribute! -->
 
-        <form class="dropzone" action="{% url 'upload:home' %}" method="post" enctype="multipart/form-data">
+
+        <form class="dropzone dropbox" action="{% url 'upload:home' %}" method="post" enctype="multipahttps://images.pexels.com/photos/994517/pexels-photo-994517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940rt/form-data">
 
             {% csrf_token %}
             <table>
                 {{ upload_form.as_table }}
             </table>
         </form>
-{#        <button id="submit-all" type="submit">Upload</button>#}
-
-        <br>
-        <a href="http://127.0.0.1:8000/upload-gender/">Choose your gender</a>
-
+      <a href="http://127.0.0.1:8000/upload-gender/" style="margin-left: 500px">Choose your gender</a>
+      <!-- </div> -->
         <script src="{% static 'upload/js/dropzone.js' %}"></script>
         <script type="text/javascript">
             Dropzone.options.myDropzone = {
