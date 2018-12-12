@@ -120,7 +120,29 @@ DESIGN = (
     ("Straight-leg", "Straight-leg"),
     ("lapel collar", "lapel collar"),
     ("stand collar", "stand collar"),
+)
 
+COLOR = (
+    ("All", "All"),
+    ("blue", "blue"),
+    ("black", "black"),
+    ("brown", "brown"),
+    ("green", "green"),
+    ("grey", "grey"),
+    ("gold", "gold"),
+    ("indigo", "indigo"),
+    ("khaki", "Khaki"),
+    ("lime", "lime"),
+    ("magenta", "magenta"),
+    ("navy", "navy"),
+    ("orange", "orange"),
+    ("pink", "pink"),
+    ("purple", "purple"),
+    ("red", "red"),
+    ("silver", "silver"),
+    ("tan", "tan"),
+    ("white", "white"),
+    ("yellow", "yellow")
 )
 
 
@@ -138,6 +160,10 @@ class MaterialForm(forms.Form):
 
 class DesignForm(forms.Form):
     design = forms.ChoiceField(widget=forms.Select(), choices=DESIGN)
+
+
+class ColorForm(forms.Form):
+    color = forms.ChoiceField(widget=forms.Select(), choices=COLOR)
 
 
 class UploadForm(forms.ModelForm):

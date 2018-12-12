@@ -86,6 +86,12 @@
                         {{ design_form.as_p }}
                     </ul>
                     <br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ color_form.as_p }}
+                    </ul>
+                    <br><br>
                     <button type="submit" class="btn btn-info btn-submit" style="margin-top: 23px; font-size: 15px; font-family:Raleway">Submit</button>
 
                 </form>

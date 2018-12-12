@@ -8,7 +8,7 @@ urlpatterns = [
     path('upload/', views.upload_page, name='upload page'),
 
     path(
-        "filter-result/<gender>/<category>/<material>/<design>",
+        "filter-result/<gender>/<category>/<material>/<design>/<color>",
         views.filter_result_page,
         name="filter-result page",
     ),
