@@ -4,7 +4,7 @@
 
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse
 
 from .forms import *
@@ -113,9 +113,11 @@ def filter_result_page(request, gender, category, material, design):
 def clothes_detail(request, gender, pk):
     if gender == "M":
         clothes = get_object_or_404(MenClothes, pk=pk)
+        item_url = clothes.item_url
     else:
         clothes = get_object_or_404(WomenClothes, pk=pk)
-    return render(request, "website/detail_page.html", {"clothes": clothes})
+        item_url = clothes.item_url
+    return redirect(item_url)
 
 
 def upload_page(request):
