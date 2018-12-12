@@ -121,19 +121,13 @@ def clothes_detail(request, gender, pk):
 
 
 def upload_page(request):
-    # gender_form = GenderForm(request.POST, prefix='gender')
     upload_form = UploadForm(request.POST, request.FILES)
 
     if request.method == 'POST' and upload_form.is_valid():
-        # gender = upload_form.cleaned_data["gender"]
         new_file = UploadFile(file=request.FILES['file'])
         new_file.save()
 
         # current_time = datetime.datetime.now().strftime('%H_%M')
-        # current_time = "3_14"
-
-        # subprocess.run("upload/recommend.py")
-        # subprocess.check_call(["python3.7", "/upload/recommend.py"])
         # recommend()
 
         return HttpResponseRedirect(
@@ -141,7 +135,6 @@ def upload_page(request):
         )
     else:
         upload_form = UploadForm()
-        # gender_form = GenderForm(prefix='gender')
         return render(request, 'website/upload_page.html', {'upload_form': upload_form})
 
 
