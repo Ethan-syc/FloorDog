@@ -541,7 +541,7 @@ img {
     z-index: 1;
     -webkit-box-flex: 0;
     /*-ms-flex: 0 0 200px;*/
-    flex: 0 0 200px;
+    flex: 0 0 190px;
     width: 300px;
     max-width: 300px;
     background-color: #f5f7fa;
