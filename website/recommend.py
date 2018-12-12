@@ -27,6 +27,18 @@ top_formal = ['blazer', 'suits-blazers', 'suit', 'blazer', 'dickie', 'polo', 'bl
 
 bottom_formal = ['trousers', 'trouser', 'kilt']
 
+top_jacket = ['jackets-coats']
+
+top_casual = ['shirts', 'sweaters', 'tops']
+
+bottom_casual = ['shorts', 'jeans', 'pants', 'skirts']
+
+full_body = ['jumpsuit', 'dresses']
+
+top_formal = ['suits-blazers']
+
+bottom_formal = []
+
 category_type = [("top_jacket", top_jacket), ("top_casual", top_casual), 
 				 ("bottom_casual", bottom_casual), ("full_body", full_body), 
 				 ("top_formal", top_formal), ("bottom_formal", bottom_formal)]

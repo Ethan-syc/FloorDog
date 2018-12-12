@@ -191,10 +191,16 @@ def upload_gender_page(request):
         gender = gender_form.cleaned_data["gender"]
         global indexes
         indexes = rec_rec(gender)
-        try:
-            os.remove('website/id_lists/result.txt')
-        except:
-            print('aaaaa')
+        '''
+        id_dir = 'website/id_lists/result.txt'
+        
+        for sub in os.listdir(id_dir):
+            os.remove(os.path.join(id_dir, sub))
+        '''
+        dir = 'website/uploaded_files'
+        for sub in os.listdir(dir):
+            os.remove(os.path.join(dir, sub))
+        print('finished')
 
         return HttpResponseRedirect(
             reverse("upload-result page", args=gender)

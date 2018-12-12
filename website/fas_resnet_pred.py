@@ -256,6 +256,7 @@ def women_pred(clothes_path):
 
 
     test_img_path = clothes_path
+    print(test_img_path)
     im = Image.open(test_img_path)
     im_input = data_transforms(im).float()
     #imshow(im_input); plt.show()
