@@ -1,4 +1,4 @@
-# import os
+import os
 # import datetime
 # import subprocess
 
@@ -9,8 +9,10 @@ from django.urls import reverse
 
 from .forms import *
 from website.models import *
+from website.rec_tools import rec_rec
 # from . import recommend
 
+indexes = []
 
 def index(request):
     return render(request, "website/index.html")
@@ -187,6 +189,13 @@ def upload_gender_page(request):
     gender_form = GenderForm(request.POST)
     if request.method == 'POST' and gender_form.is_valid():
         gender = gender_form.cleaned_data["gender"]
+        global indexes
+        indexes = rec_rec(gender)
+        try:
+            os.remove('website/id_lists/result.txt')
+        except:
+            print('aaaaa')
+
         return HttpResponseRedirect(
             reverse("upload-result page", args=gender)
         )
@@ -196,10 +205,11 @@ def upload_gender_page(request):
 
 
 def upload_result_page(request, gender):
-    # current_txt = current_time + '.txt'
-    f_path = 'upload/id_lists/result.txt'
-    with open(f_path, 'r') as f:
-        id_list = f.read().split(',')
+    # f_path = 'website/id_lists/result.txt'
+    # with open(f_path, 'r') as f:
+    #     id_list = f.read().split(',')
+    id_list = indexes
+    print(id_list)
 
     if gender == "M":
         result_list = MenClothes.objects.filter(mcid__in=id_list)
