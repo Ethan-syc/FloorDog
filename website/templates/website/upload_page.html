@@ -9,7 +9,9 @@
 
     <body>
         <!-- IMPORTANT enctype attribute! -->
+
         <form class="dropzone" action="{% url 'upload:home' %}" method="post" enctype="multipart/form-data">
+
             {% csrf_token %}
             <table>
                 {{ upload_form.as_table }}

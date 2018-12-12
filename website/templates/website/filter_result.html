@@ -1,70 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC|Raleway|Gamja+Flower|Arimo" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
 <head>
     <meta charset="UTF-8">
     <title>FloorDog | Filter results</title>
     <!-- Core Style CSS -->
     {% load staticfiles %}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/> -->
 </head>
 
+<div class="navbar-wagon">
+<!-- <a href="/" class="navbar-wagon-brand">
+    <img src="images/logo.png" alt="logo">
+  </a>  -->
+  {% load staticfiles %}
+  <a href="#" class="navbar-wagon-brand"><img src="{% static "img/icon-img/dress.png" %}" alt=""></a>
+  <div>
+  <p class="website-name" style="font-size:30px; margin-left:108px; font-family: 'Gamja Flower', cursive"> FloorDog </p>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <a href="{% url 'index' %}" class="navbar-wagon-item navbar-wagon-link">Home</a>
+    <a href="{% url 'filter page' %}" class="navbar-wagon-item navbar-wagon-link">Filter</a>
+    <a href="{% url 'upload page' %}" class="navbar-wagon-item navbar-wagon-link">Upload</a>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+
+        {% load staticfiles %}
+                <a href="#" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"><img src="{% static "img/icon-img/coled.png" %}" alt=""></a>
+        <!-- <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <body>
+
+
     <!-- ##### Main Content Wrapper Start ##### -->
-    <div class="main-content-wrapper d-flex">
-        <!-- Header Area Start -->
-        <header class="header-area">
-            <!-- Close Icon -->
-            <div class="nav-close">
-                <i class="fa fa-close" aria-hidden="true"></i>
-            </div>
-            <!-- Logo -->
-            <div class="logo">
-                {% load staticfiles %}
-                <img src="{% static "img/core-img/logo.png" %}" alt=""/>
-            </div>
-            <!-- Amado Nav -->
-            <nav class="amado-nav">
-                <ul>
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li class="active"><a href="{% url 'filter page' %}">Filter</a></li>
-                    <li><a href="{% url 'upload page' %}">Upload</a></li>
-                </ul>
-            </nav>
-            <br>
 
-            <div class="cart-fav-search mb-100">
-                {% load staticfiles %}
-                <a href="#" class="search-nav"><img src="{% static "img/core-img/search.png" %}" alt="">Search</a>
-            </div>
-        </header>
         <!-- Header Area End -->
-    <div>
-        <h2>gender you choose: {{ gender }}</h2>
-    `   <br>
-        <h2>category you choose: {{ category }}</h2>
 
-        <br>
 
-        {% if len == 0 %}
+        <!-- <h2>==================我是分割线==================</h2> -->
+        <div class="search-result" style="margin-top: 50px; margin-left: 20px;" >
+
+
+
+
+      <div class="model-container" style="margin-top: 45px" >
+        <div class="row">
+        {% for result in result_list %}
+
+
+            <div class="col-xs-3" >
+              <tr class="card">
+                <div class="image-title" >
+                <!-- p> {{ result.clothes_name }}</p> -->
+                </div>
+
+                <img class="model-image" src={{ result.pic_url }}>
+                <p class="see-detail"> <a class="image-link" href ="{% url 'clothes-detail page' gender result.pk %}">{{ result.clothes_name }}</a></p>
+
+                {#TODO add the field we want to show#}
+            </tr>
+          </div>
+
+        {% endfor %}
+        </div>
+      </div>
+
+      {% if len == 0 %}
             <h2>Sorry! </h2>
             <h2>We can't find any result from the combination of your choice, try search something else</h2>
         {% else %}
-            <h2>Great! </h2>
-            <h2>We found {{ len }} result</h2>
-            <h2>every page has max 10 results</h2>
+
+            <h4 style="margin: 13px">We found {{ len }} result</h4>
+
         {% endif %}
 
-        <br>
-
-        <h2>results are:</h2>
-        {% for result in result_list %}
-            <tr>
-                <h3>clothes name: {{ result.clothes_name }}</h3>
-                <img src={{ result.pic_url }}>
-                <h3><a href="{% url 'clothes-detail page' gender result.pk %}">Click me to see detail</a></h3>
-                {#TODO add the field we want to show#}
-            </tr>
-        {% endfor %}
 
         {% load proper_pagination %}
         {% load url_replace %}
@@ -98,53 +129,21 @@
                 <li><a class="page-link" href="?{% url_replace request 'page' paginator.num_pages %}">⇥</a></li>
             {% endif %}
         </ul>
-    </div>
+      </div>
 
-    <!-- ##### Footer Area Start ##### -->
-    <footer class="footer_area">
-        <div class="container">
-            <div class="row align-items-center">
-                <!-- Single Widget Area -->
-                <div class="col-12 col-lg-4">
-                    <div class="single_widget_area">
-                        <!-- Logo -->
-                        <div class="footer-logo mr-50">
-                            {% load staticfiles %}
-                            <a href="{% url 'index' %}"><img src="{% static "img/core-img/logo2.png" %}" alt=""></a>
-                        </div>
-                        <!-- Copywrite Text -->
-                        <p class="copywrite">
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made based on <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                    </div>
-                </div>
-                <!-- Single Widget Area -->
-                <div class="col-12 col-lg-8">
-                    <div class="single_widget_area">
-                        <!-- Footer Menu -->
-                        <div class="footer_menu">
-                            <nav class="navbar navbar-expand-lg justify-content-end">
-                                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#footerNavContent" aria-controls="footerNavContent" aria-expanded="false" aria-label="Toggle navigation"><i class="fa fa-bars"></i></button>
-                                <div class="collapse navbar-collapse" id="footerNavContent">
-                                    <ul class="navbar-nav ml-auto">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="{% url 'index' %}">Home</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'filter page' %}">Filter</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'upload page' %}">Upload</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-    <!-- ##### Footer Area End ##### -->
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+   Designed and built with <i class="fas fa-heart"></i> by Ziyi, Shun, Alice, Ethan and Felicia
+  </div>
+</div>
 
     <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
     <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>

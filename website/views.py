@@ -45,6 +45,7 @@ def filter_page(request):
 
 
 # pagination: ref:https://simpleisbetterthancomplex.com/tutorial/2016/08/03/how-to-paginate-with-django.html
+
 def filter_result_page(request, gender, category, material, design):
     result_list = []
 
@@ -88,7 +89,7 @@ def filter_result_page(request, gender, category, material, design):
     if gender == "W" and category != "All" and material != "All" and design != "All":
         result_list = WomenClothes.objects.filter(clothes_detail__icontains=design).filter(category__icontains=category).filter(material__icontains=material)
 
-    paginator = Paginator(result_list, 10)
+    paginator = Paginator(result_list, 12)
     page = request.GET.get("page", 1)
     try:
         paginated_result_list = paginator.page(page)
