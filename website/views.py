@@ -211,9 +211,6 @@ def upload_gender_page(request):
 
 
 def upload_result_page(request, gender):
-    # f_path = 'website/id_lists/result.txt'
-    # with open(f_path, 'r') as f:
-    #     id_list = f.read().split(',')
     id_list = indexes
     print(id_list)
 
