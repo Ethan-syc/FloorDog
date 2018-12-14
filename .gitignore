@@ -115,3 +115,5 @@ project316/women_clothes_comb.csv
 **.DS_Store
 *.csv
 *.pt
+*.png
+*.jpg
