@@ -1,4 +1,4 @@
-#!/Users/ethan/PycharmProjects/project316/venv/bin/python
+#!/Users/shunli/Desktop/CS316/mysite/venv/bin/python
 # EASY-INSTALL-ENTRY-SCRIPT: 'pip==10.0.1','console_scripts','pip3'
 __requires__ = 'pip==10.0.1'
 import re

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC|Raleway|Gamja+Flower" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FloorDog | Select filters</title>
+    <!-- Favicon  -->
+    {% load staticfiles %}
+    <link rel="icon" href="{% static "img/core-img/favicon.ico" %}">
+    <!-- Core Style CSS -->
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+</head>
+
+<div class="navbar-wagon">
+<!-- <a href="/" class="navbar-wagon-brand">
+    <img src="images/logo.png" alt="logo">
+  </a>  -->
+  {% load staticfiles %}
+  <a href="#" class="navbar-wagon-brand"><img src="{% static "img/icon-img/dress.png" %}" alt=""></a>
+  <div>
+  <p class="website-name" style="font-size:30px; margin-left:108px; font-family: 'Gamja Flower', cursive"> FloorDog </p>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <a href="{% url 'index' %}" class="navbar-wagon-item navbar-wagon-link">Home</a>
+    <a href="{% url 'filter page' %}" class="navbar-wagon-item navbar-wagon-link">Filter</a>
+    <a href="{% url 'upload page' %}" class="navbar-wagon-item navbar-wagon-link">Upload</a>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+
+        {% load staticfiles %}
+                <a href="#" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"><img src="{% static "img/icon-img/coled.png" %}" alt=""></a>
+        <!-- <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<body>
+    <!-- ##### Main Content Wrapper Start ##### -->
+    <div class="main-content-wrapper d-flex">
+        <!-- Header Area Start -->
+        <!-- Header Area End -->
+
+        <div class="shop_sidebar_area" style = "flex: 0 0 190px";>
+            <!-- ##### Single Widget ##### -->
+
+            <div>
+                <form action="" method="post">
+                    {% csrf_token %}
+
+                    <ul>
+                        {{ gender_form.as_p }}
+                    </ul>
+                    <br><br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ filter_form.as_p }}
+                    </ul>
+                    <br><br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ material_form.as_p }}
+                    </ul>
+                    <br><br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ design_form.as_p }}
+                    </ul>
+                    <br><br><br>
+
+                    {% csrf_token %}
+                    <ul>
+                        {{ color_form.as_p }}
+                    </ul>
+                    <br><br><br>
+                    <button type="submit" class="btn btn-info btn-submit" style="margin-top: 23px; font-size: 15px; font-family:Raleway">Submit</button>
+
+                </form>
+            </div>
+
+
+
+        </div>
+
+        <div class="amado_product_area section-padding-100">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product-topbar d-xl-flex align-items-end justify-content-between">
+                            <!-- Total Products -->
+                            <div class="total-products">
+                                <br>
+
+
+                            </div>
+                            <!-- Sorting -->
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+
+                    <!-- Single Product Area -->
+                    <div class=" col-xl-6">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                {% load staticfiles %}
+                                <img src="{% static "img/product-img/product1.jpeg" %}" alt="" >
+                                <!-- Hover Thumb -->
+                                {% load staticfiles %}
+                                <img class="hover-img" src="{% static "img/hover-img/product1.jpeg" %}" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <!-- <p class="product-price">Women's Sweater</p> -->
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/sweater/All/All/All">Women's Sweater</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-6">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                {% load staticfiles %}
+                                <img src="{% static "img/product-img/product2.png" %}" alt="">
+                                <!-- Hover Thumb -->
+                                {% load staticfiles %}
+                                <img class="hover-img" src="{% static "img/hover-img/product2.jpeg" %}" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/coat/All/All/All">Women's Outerwear</a>
+                                </div>
+                                <!-- Ratings & Cart -->
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-4">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                {% load staticfiles %}
+                                <img src="{% static "img/product-img/product3.jpeg" %}" alt="">
+                                <!-- Hover Thumb -->
+                                {% load staticfiles %}
+                                <img class="hover-img" src="{% static "img/hover-img/product3.jpeg" %}" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/M/jacket/All/All/All">Men's Jacket</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-4">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                {% load staticfiles %}
+                                <img src="{% static "img/product-img/product41.jpg" %}" alt="">
+                                <!-- Hover Thumb -->
+                                {% load staticfiles %}
+                                <img class="hover-img" src="{% static "img/hover-img/product41.jpg" %}" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <p class="product-price">Accessories</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Product Area -->
+                    <div class="col-12 col-sm-6 col-md-12 col-xl-4">
+                        <div class="single-product-wrapper">
+                            <!-- Product Image -->
+                            <div class="product-img">
+                                {% load staticfiles %}
+                                <img src="{% static "img/product-img/product5.jpeg" %}" alt="">
+                                <!-- Hover Thumb -->
+                                {% load staticfiles %}
+                                <img class="hover-img" src="{% static "img/hover-img/product6.jpeg" %}" alt="">
+                            </div>
+
+                            <!-- Product Description -->
+                            <div class="product-description d-flex align-items-center justify-content-between">
+                                <!-- Product Meta Data -->
+                                <div class="product-meta-data">
+                                    <div class="line"></div>
+                                    <a class="product-price" href="http://127.0.0.1:8000/filter-result/W/top/All/All/All">Women's Top</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+
+            </div>
+        </div>
+    <!-- ##### Main Content Wrapper End ##### -->
+    </div>
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+   Designed and built with <i class="fas fa-heart"></i> by Ziyi, Shun, Alice, Ethan and Felicia
+  </div>
+</div>
+
+
+
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>
+    <!-- Popper js -->
+    <script src="{% static "js/popper.min.js" %}" ></script>
+    <!-- Bootstrap js -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+    <!-- Plugins js -->
+    <script src="{% static "js/plugins.js" %}" ></script>
+    <!-- Active js -->
+    <script src="{% static "js/active.js" %}" ></script>
+
+</body>
+
+</html>

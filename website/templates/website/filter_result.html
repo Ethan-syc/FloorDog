@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC|Raleway|Gamja+Flower|Arimo" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>FloorDog | Filter results</title>
+    <!-- Core Style CSS -->
+    {% load staticfiles %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/> -->
+</head>
+
+<div class="navbar-wagon">
+<!-- <a href="/" class="navbar-wagon-brand">
+    <img src="images/logo.png" alt="logo">
+  </a>  -->
+  {% load staticfiles %}
+  <a href="#" class="navbar-wagon-brand"><img src="{% static "img/icon-img/dress.png" %}" alt=""></a>
+  <div>
+  <p class="website-name" style="font-size:30px; margin-left:108px; font-family: 'Gamja Flower', cursive"> FloorDog </p>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <a href="{% url 'index' %}" class="navbar-wagon-item navbar-wagon-link">Home</a>
+    <a href="{% url 'filter page' %}" class="navbar-wagon-item navbar-wagon-link">Filter</a>
+    <a href="{% url 'upload page' %}" class="navbar-wagon-item navbar-wagon-link">Upload</a>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+
+        {% load staticfiles %}
+                <a href="#" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"><img src="{% static "img/icon-img/coled.png" %}" alt=""></a>
+        <!-- <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<body>
+
+
+    <!-- ##### Main Content Wrapper Start ##### -->
+
+        <!-- Header Area End -->
+
+
+        <!-- <h2>==================我是分割线==================</h2> -->
+        <div class="search-result" style="margin-top: 50px; margin-left: 20px;" >
+
+
+
+
+      <div class="model-container" style="margin-top: 45px" >
+        <div class="row">
+        {% for result in result_list %}
+
+
+            <div class="col-xs-3" >
+              <tr class="card">
+                <div class="image-title" >
+                <!-- p> {{ result.clothes_name }}</p> -->
+                </div>
+
+                <img class="model-image" src={{ result.pic_url }}>
+                <p class="see-detail"> <a class="image-link" href ="{% url 'clothes-detail page' gender result.pk %}" target="_blank">{{ result.clothes_name }}</a></p>
+
+                {#TODO add the field we want to show#}
+            </tr>
+          </div>
+
+        {% endfor %}
+        </div>
+      </div>
+
+      {% if len == 0 %}
+            <h2>Sorry! </h2>
+            <h2>We can't find any result from the combination of your choice, try search something else</h2>
+        {% else %}
+
+            <h4 style="margin: 13px">We found {{ len }} result</h4>
+
+        {% endif %}
+
+
+        {% load proper_pagination %}
+        {% load url_replace %}
+        <ul class="pagination">
+            {% if result_list.number == 1 %}
+                <li class="disabled"><span>⇤</span></li>
+            {% else %}
+                <li><a class="page-link" href="?{% url_replace request 'page' 1 %}">⇤</a></li>
+            {% endif %}
+            {% if result_list.has_previous %}
+                <li><a class="page-link" href="?{% url_replace request 'page' result_list.previous_page_number %}">&laquo;</a>
+                </li>
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            {% for i in paginator|proper_paginate:result_list.number %}
+                {% if result_list.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    <li><a class="page-link" href="?{% url_replace request 'page' i %}">{{ i }}</a></li>
+                {% endif %}
+            {% endfor %}
+            {% if result_list.has_next %}
+                <li><a class="page-link" href="?{% url_replace request 'page' result_list.next_page_number %}">&raquo;</a></li>
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+            {% if result_list.number == paginator.num_pages %}
+                <li class="disabled"><span>⇥</span></li>
+            {% else %}
+                <li><a class="page-link" href="?{% url_replace request 'page' paginator.num_pages %}">⇥</a></li>
+            {% endif %}
+        </ul>
+      </div>
+
+
+<div class="footer">
+  <div class="footer-links">
+    <a href="#"><i class="fab fa-github"></i></a>
+    <a href="#"><i class="fab fa-instagram"></i></a>
+    <a href="#"><i class="fab fa-facebook"></i></a>
+    <a href="#"><i class="fab fa-twitter"></i></a>
+    <a href="#"><i class="fab fa-linkedin"></i></a>
+  </div>
+  <div class="footer-copyright">
+   Designed and built with <i class="fas fa-heart"></i> by Ziyi, Shun, Alice, Ethan and Felicia
+  </div>
+</div>
+
+    <!-- ##### jQuery (Necessary for All JavaScript Plugins) ##### -->
+    <script src="{% static "js/jquery/jquery-2.2.4.min.js" %}" ></script>
+    <!-- Popper js -->
+    <script src="{% static "js/popper.min.js" %}" ></script>
+    <!-- Bootstrap js -->
+    <script src="{% static "js/bootstrap.min.js" %}" ></script>
+    <!-- Plugins js -->
+    <script src="{% static "js/plugins.js" %}" ></script>
+    <!-- Active js -->
+    <script src="{% static "js/active.js" %}" ></script>
+
+</body>
+</html>

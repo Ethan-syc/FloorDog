@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC|Raleway|Gamja+Flower|Arimo" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+
+    <head>
+        <meta charset="utf-8">
+        <title>FloorDog | Upload</title>
+        {% load staticfiles %}
+        <link href="{% static 'upload/css/dropzone.css' %}" type="text/css" rel="stylesheet"/>
+        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    </head>
+
+    <div class="navbar-wagon">
+<!-- <a href="/" class="navbar-wagon-brand">
+    <img src="images/logo.png" alt="logo">
+  </a>  -->
+  {% load staticfiles %}
+  <a href="#" class="navbar-wagon-brand"><img src="{% static "img/icon-img/dress.png" %}" alt=""></a>
+  <div>
+  <p class="website-name" style="font-size:30px; margin-left:108px; font-family: 'Gamja Flower', cursive"> FloorDog </p>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <a href="{% url 'index' %}" class="navbar-wagon-item navbar-wagon-link">Home</a>
+    <a href="{% url 'filter page' %}" class="navbar-wagon-item navbar-wagon-link">Filter</a>
+    <a href="{% url 'upload page' %}" class="navbar-wagon-item navbar-wagon-link">Upload</a>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+
+        {% load staticfiles %}
+                <a href="#" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"><img src="{% static "img/icon-img/coled.png" %}" alt=""></a>
+        <!-- <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <body>
+        <!-- IMPORTANT enctype attribute! -->
+
+        <div>
+            <form class="dropzone dropbox" action="{% url 'upload:home' %}" method="post" enctype="multipahttps://images.pexels.com/photos/994517/pexels-photo-994517.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940rt/form-data">
+
+                {% csrf_token %}
+                <table>
+                    {{ upload_form.as_table }}
+                </table>
+            </form>
+        </div>
+        <br>
+        <a href="http://127.0.0.1:8000/upload-gender/" style="margin-left: 666px; font-size: 21px; padding: 5px; border-spacing: 10px; border-style: solid; fill: #0736A4" >Upload</a>
+
+
+      <!-- </div> -->
+        <script src="{% static 'upload/js/dropzone.js' %}"></script>
+        <script type="text/javascript">
+            Dropzone.options.myDropzone = {
+
+                // Prevents Dropzone from uploading dropped files immediately
+                autoProcessQueue : true,
+
+                init : function() {
+                    var submitButton = document.querySelector("#submit-all")
+                    myDropzone = this;
+
+                    submitButton.addEventListener("click", function() {
+                        myDropzone.processQueue();
+                        // Tell Dropzone to process all queued files.
+                    });
+
+                    // You might want to show the submit button only when
+                    // files are dropped here:
+                    this.on("addedfile", function() {
+                        // Show submit button here and/or inform user to click it.
+                    });
+
+                }
+            };
+        </script>
+    </body>
+</html>

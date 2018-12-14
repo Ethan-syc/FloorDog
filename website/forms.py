@@ -1,8 +1,12 @@
 from django import forms
+from upload.models import UploadFile
+from website.models import *
 
-GENDER = (("M", "men"), ("W", "women"))
-# get CATEGORY using this command: cat men.csv women.csv | cut -d , -f 5 | sort -u > category.txt
+
+GENDER = (("W", "Women"), ("M", "Men"))
+
 CATEGORY = (
+    ("All", "All"),
     ("blazer", "blazer"),
     ("blouse", "blouse"),
     ("bodysuit", "bodysuit"),
@@ -13,32 +17,26 @@ CATEGORY = (
     ("cardigan", "cardigan"),
     ("catsuit", "catsuit"),
     ("coat", "coat"),
-    ("coatshirt", "coatshirt"),
     ("corset", "corset"),
     ("crewneck", "crewneck"),
     ("denim", "denim"),
     ("dickie", "dickie"),
     ("dress", "dress"),
-    ("dresses", "dresses"),
     ("genius", "genius"),
     ("harrington", "harrington"),
     ("hoodie", "hoodie"),
     ("jacket", "jacket"),
-    ("jackets-coats", "jackets-coats"),
-    ("jeans", "jeans"),
+    ("jean", "jean"),
     ("jumper", "jumper"),
     ("jumpsuit", "jumpsuit"),
-    ("jumpsuits", "jumpsuits"),
     ("kilt", "kilt"),
     ("leggings", "leggings"),
-    ("men", "men"),
     ("miniskirt", "miniskirt"),
-    ("minskirt", "minskirt"),
+    ("outerwear", "outerwear"),
     ("overalls", "overalls"),
     ("overcoat", "overcoat"),
     ("overshirt", "overshirt"),
     ("pant", "pant"),
-    ("pants", "pants"),
     ("parka", "parka"),
     ("peacoat", "peacoat"),
     ("polo", "polo"),
@@ -48,33 +46,130 @@ CATEGORY = (
     ("raincoat", "raincoat"),
     ("set", "set"),
     ("shirt", "shirt"),
-    ("shirts", "shirts"),
     ("short", "short"),
-    ("shorts", "shorts"),
     ("skirt", "skirt"),
-    ("skirts", "skirts"),
-    ("skort", "skort"),
     ("stole", "stole"),
     ("suit", "suit"),
-    ("suits-blazers", "suits-blazers"),
     ("sweater", "sweater"),
-    ("sweaters", "sweaters"),
-    ("sweatershirt", "sweatershirt"),
     ("sweatpants", "sweatpants"),
     ("sweatshirt", "sweatshirt"),
     ("tights", "tights"),
     ("top", "top"),
-    ("tops", "tops"),
     ("trenchcoat", "trenchcoat"),
     ("trouser", "trouser"),
-    ("trousers", "trousers"),
     ("tunic", "tunic"),
     ("turtleneck", "turtleneck"),
     ("vest", "vest"),
     ("waistcoat", "waistcoat"),
 )
 
+MATERIAL = (
+    ("All", "All"),
+    ("cotton", "cotton"),
+    ("polyester", "polyester"),
+    ("wool", "wool"),
+    ("elastane", "elastane"),
+    ("polyamide", "polyamide"),
+    ("leather", "leather"),
+    ("silk", "silk"),
+    ("polyurethane", "polyurethane"),
+    ("acrylic", "acrylic"),
+    ("cashmere", "cashmere"),
+    ("cupro", "cupro"),
+    ("mohair", "mohair"),
+    ("spandex", "spandex"),
+    ("acetate", "acetate"),
+    ("alpaca", "alpaca"),
+    ("rayon", "rayon"),
+    ("leather", "leather"),
+    ("merino", "merino"),
+    ("linen", "linen"),
+    ("lamb", "lamb"),
+    ("lyocell", "lyocell"),
+    ("calfskin", "calfskin"),
+    ("modal", "modal"),
+    ("lycra", "lycra"),
+    ("fiber", "fiber"),
+    ("cupra", "cupra"),
+    ("angora", "angora"),
+    ("triacetate", "triacetate"),
+    ("camel", "camel"),
+    ("recycled", "recycled"),
+    ("pima", "pima"),
+    ("modacrylic", "modacrylic"),
+    ("lambswool", "lambswool"),
+)
 
-class MyForm(forms.Form):
+DESIGN = (
+    ("All", "All"),
+    ("Collar", "Collar"),
+    ("Long sleeve", "Long sleeve"),
+    ("Short sleeve", "Short sleeve"),
+    ("Slim-fit", "Slim-fit"),
+    ("Relaxed-fit", "Relaxed-fit"),
+    ("Skinny-fit", "Skinny-fit"),
+    ("Button closure", "Button closure"),
+    ("Zip closure", "Zip closure"),
+    ("Mid-rise", "Mid-rise"),
+    ("logo", "Logo"),
+    ("Spread collar", "Spread collar"),
+    ("Four-pocket", "Four-pocket"),
+    ("embroidered", "Embroidered"),
+    ("Five-pocket", "Five-pocket"),
+    ("Three-pocket", "Three-pocket"),
+    ("Straight-leg", "Straight-leg"),
+    ("lapel collar", "Lapel collar"),
+    ("stand collar", "Stand collar"),
+)
+
+COLOR = (
+    ("All", "All"),
+    ("beige", "Beige"),
+    ("blue", "Blue"),
+    ("black", "Black"),
+    ("brown", "Brown"),
+    ("green", "Green"),
+    ("grey", "Grey"),
+    ("gold", "Gold"),
+    ("indigo", "Indigo"),
+    ("khaki", "Khaki"),
+    ("lime", "Lime"),
+    ("magenta", "Magenta"),
+    ("navy", "Navy"),
+    ("orange", "Orange"),
+    ("pink", "Pink"),
+    ("purple", "Purple"),
+    ("red", "Red"),
+    ("silver", "Silver"),
+    ("tan", "Tan"),
+    ("white", "White"),
+    ("yellow", "Yellow")
+)
+
+
+class GenderForm(forms.Form):
     gender = forms.ChoiceField(widget=forms.Select(), choices=GENDER)
+
+
+class FilterForm(forms.Form):
     category = forms.ChoiceField(widget=forms.Select(), choices=CATEGORY)
+
+
+class MaterialForm(forms.Form):
+    material = forms.ChoiceField(widget=forms.Select(), choices=MATERIAL)
+
+
+class DesignForm(forms.Form):
+    design = forms.ChoiceField(widget=forms.Select(), choices=DESIGN)
+
+
+class ColorForm(forms.Form):
+    color = forms.ChoiceField(widget=forms.Select(), choices=COLOR)
+
+
+class UploadForm(forms.ModelForm):
+    class Meta:
+        model = UploadFile
+        exclude = ()
+
+

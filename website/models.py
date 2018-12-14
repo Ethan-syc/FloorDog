@@ -2,6 +2,8 @@ from django.db import models
 
 
 # Create your models here.
+# class UploadFile(models.Model):
+#     file = models.FileField(upload_to='uploaded_files/%Y/%m/%d')
 
 
 class MenClothes(models.Model):
@@ -27,6 +29,9 @@ class MenClothes(models.Model):
     accessory12 = models.CharField(max_length=500, default="")
     accessory13 = models.CharField(max_length=500, default="")
 
+    # def __str__(self):
+    #     return self.clothes_name
+
 
 class WomenClothes(models.Model):
     wcid = models.IntegerField(primary_key=True)
@@ -47,6 +52,12 @@ class WomenClothes(models.Model):
     accessory8 = models.CharField(max_length=500, default="")
     accessory9 = models.CharField(max_length=500, default="")
     accessory10 = models.CharField(max_length=500, default="")
+    accessory11 = models.CharField(max_length=500, default="")
+    accessory12 = models.CharField(max_length=500, default="")
+    accessory13 = models.CharField(max_length=500, default="")
+
+    def __str__(self):
+        return self.clothes_name
 
 
 class MenColor(models.Model):
@@ -59,7 +70,11 @@ class MenColor(models.Model):
     color6 = models.CharField(max_length=7, default="")
     color7 = models.CharField(max_length=7, default="")
     color8 = models.CharField(max_length=7, default="")
+    color9 = models.CharField(max_length=7, default="")
+    color10 = models.CharField(max_length=7, default="")
 
+    def __str__(self):
+        return self.id
 
 class WomenColor(models.Model):
     id = models.OneToOneField(WomenClothes, on_delete=models.CASCADE, primary_key=True)
@@ -71,6 +86,11 @@ class WomenColor(models.Model):
     color6 = models.CharField(max_length=7, default="")
     color7 = models.CharField(max_length=7, default="")
     color8 = models.CharField(max_length=7, default="")
+    color9 = models.CharField(max_length=7, default="")
+    color10 = models.CharField(max_length=7, default="")
+
+    def __str__(self):
+        return self.id
 
 
 def __str__(self):

@@ -1,9 +1,42 @@
-Felicia - Wrote code that scrapes Google search results. Given a search-term, it returns a dataframe with the title and description of the desired number of results. Began reading on the RNN portion. 
-
-Ziyi - Wrote the scrapping program on ssense.com with Ethan, Alice and Shun. Added the scrapping for compatible clothes. Wrote color identification program to identify dominant colors of each clothes. Wrote the Neural Net for landmark prediction by Pytorch and trained it on DeepFashion Dataset.
-
-Shun - Assisted in the development of the scrapping program on ssense.com with Ziyi, Ethan, and Alice. Built the environment for django, learned basic concepts and operations in Django, and finished a raw django prototype for the project.
-
-Yichuan - Wrote a part of the web scraping tool on ssense.com using python beautifulsoup module and regular expression, helped teammate set up the Django develop environment. Worked through the Django tutorial. 
-
-Alice -  Helped with writing the scrapping program on ssense.com and parsing the data by assigning attributes. Went through tutorial on CNNs related to visual recognition. 
+﻿1. Ziyi Wang
+   1. Proposed the project ideas and designed main functions.
+   2. Wrote the main parts of scrapping.
+   3. Add compatible items scrapping.
+   4. Setup pytorch learning environment on local laptop and GPU learning environment on lab server.
+   5. Organize the scraped data, write scrapping for accessories based on recorded clothing items, and assign unique index for all recorded clothing items.
+   6. Wrote the color recognition program to recognize dominant colors of clothes in photo.
+   7. Use the color recognition program to recognize dominant colors for all clothing items stored in our database. Added the recognized colors into our database.
+   8. Rearrange the DeepFashion dataset to fit for our training. Add the clothes on ssense to training dataset.
+   9. Constructed and improved fashionNet. Conducted a small iters training.
+   10. Contructed a 101 layer residual neurual networkd to identify the category of input clothing item.
+   11. Conduct the evaluation on the two machine learning module.
+   12. Conducted research about potential competitors and other relevant algorithms published.
+1. Yichuan Shi
+   1. Participated in the development of the web scraping command tool
+   2. Fixed the python virtual environment problem. Set up the PostgreSQL database for the project. Created the 1st version Django data model for the project.
+   3. Created a view method and HTML template for project
+   4. Integrated the data in the CSV file into PostgreSQL created by Django model
+   5. Built a filter page of category and gender with dropdown lists to handle the HTTP POST request and built a filter result page to show the filtered result base on user-selected gender and category, implement pagination so the user won't need to see all the filtered-results in 1 page
+   6. Improved the pagination for better usability when results have too many pages (20+)
+   7. Built a clothes detail page to show the detailed info for each clothes, which later was abandoned.
+1. Shun Li
+   1. Helped sets up the web scraping program.
+   2. Set up the Django environment of the project, improved the data model developed by Yichuan.
+   3. Participated in the design of database schemas, and wrote create.sql, which transfers data from csv file to postgreSQL database.
+   4. Based on the gender and category filter, added attributes of clothing material, design, and color into the filter page. 
+   5. Redesigned forms.py and views.py for implementation of filter function. Replaced the original detail page, changed it to a redirection of the original url in a new browser tab.
+   6. Developed the execution flow of FloorDog’s upload function, especially execution via Django.
+   7. Wrote upload_page.html to integrate Dropzone.js for Drag and drop and browse local file upload. 
+   8. Wrote upload_gender.html, upload_result.html for the upload function and result display, as well as the corresponding methods in views.py and forms.py for file upload.
+   9. Built the 1st version of upload function related html files as well as 1st template-based version of index.html and filter-related html files.
+1. Felicia Chen
+   1. Wrote web scraper for Google search results
+   2. Cleaned and combined datasets into one file  
+   3. Made recommendation engine for articles of clothing
+   4. Filtered for clothes with compatible categories; for example, casual tops matched with casual bottoms
+   5. Wrote algorithm for clothes of most similar color through calculating the smallest difference in RGB values 
+1. Alice Chen
+1. Helped with development of  the web scrapping tool 
+2. Seperated the clothes’ attributes from descriptions scraped online and filtered out the most meaningful attribute words of max occurrence frequency
+3. Build and designed the font-end platform of the application integrated with Django framework using HTML and CSS
+4. Wrote and implemented design and layout for index page, filter_page, filter_result/upload_result page by customizing css and using external libraries

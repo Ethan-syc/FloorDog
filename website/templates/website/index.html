@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<link href="https://fonts.googleapis.com/css?family=Noto+Serif+TC|Raleway|Gamja+Flower" rel="stylesheet">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+<head>
+    <meta charset="UTF-8">
+    <title>FloorDog | Home</title>
+    <!-- Core Style CSS -->
+    {% load staticfiles %}
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/> -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/core-style.css' %}"/> -->
+</head>
+
+<div class="navbar-wagon">
+<!-- <a href="/" class="navbar-wagon-brand">
+    <img src="images/logo.png" alt="logo">
+  </a>  -->
+  {% load staticfiles %}
+  <a href="#" class="navbar-wagon-brand"><img src="{% static "img/icon-img/dress.png" %}" alt=""></a>
+  <div>
+  <p class="website-name" style="font-size:30px; margin-left:108px; font-family: 'Gamja Flower', cursive"> FloorDog </p>
+  </div>
+  <!-- Right Navigation -->
+  <div class="navbar-wagon-right hidden-xs hidden-sm">
+
+    <a href="{% url 'index' %}" class="navbar-wagon-item navbar-wagon-link">Home</a>
+    <a href="{% url 'filter page' %}" class="navbar-wagon-item navbar-wagon-link">Filter</a>
+    <a href="{% url 'upload page' %}" class="navbar-wagon-item navbar-wagon-link">Upload</a>
+
+    <!-- Profile picture with dropdown list -->
+    <div class="navbar-wagon-item">
+      <div class="dropdown">
+
+        {% load staticfiles %}
+                <a href="#" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"><img src="{% static "img/icon-img/coled.png" %}" alt=""></a>
+        <!-- <img src="https://kitt.lewagon.com/placeholder/users/ssaunier" class="avatar dropdown-toggle" id="navbar-wagon-menu" data-toggle="dropdown"> -->
+        <ul class="dropdown-menu dropdown-menu-right navbar-wagon-dropdown-menu">
+          <li><a href="#">Profile</a></li>
+          <li><a href="#">Dashboard</a></li>
+          <li><a href="#">Log Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="banner" style="background-image: linear-gradient(-225deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 60%), url('https://images.pexels.com/photos/794432/pexels-photo-794432.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');">
+  <div class="banner-content">
+    <h1>FloorDog</h1>
+    <p>Explore Your Daily Fashion</p>
+    <a href="{% url 'filter page' %}" class="btn btn-medium">Filter</a>
+    <a href="{% url 'upload page' %}" class="btn btn-medium">Upload</a>
+  </div>
+</div>
